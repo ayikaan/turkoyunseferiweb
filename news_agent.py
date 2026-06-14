@@ -29,6 +29,8 @@ API_URL            = os.environ.get("NEWS_API_URL", "https://turkoyunseferiweb.v
 API_TOKEN          = os.environ.get("NEWS_API_TOKEN", "")
 MODEL_NAME        = os.environ.get("GROQ_MODEL", "llama-3.3-70b-versatile")
 DISCORD_WEBHOOK    = os.environ.get("DISCORD_WEBHOOK_URL", "")
+WHATSAPP_PHONE     = os.environ.get("WHATSAPP_PHONE", "")
+WHATSAPP_API_KEY   = os.environ.get("WHATSAPP_API_KEY", "")
 
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
 
@@ -380,6 +382,26 @@ def send_discord_notification(message: str):
         print(f"Discord notification failed: {e}", file=sys.stderr)
 
 
+def send_whatsapp_notification(message: str):
+    """Send a WhatsApp message via CallMeBot API. Only called when WHATSAPP_PHONE and WHATSAPP_API_KEY are set."""
+    if not WHATSAPP_PHONE or not WHATSAPP_API_KEY:
+        return
+    try:
+        import urllib.parse
+        # Convert Discord bold markdown (**) to WhatsApp bold markdown (*)
+        wa_message = message.replace("**", "*")
+        encoded_message = urllib.parse.quote(wa_message)
+        url = f"https://api.callmebot.com/whatsapp.php?phone={WHATSAPP_PHONE}&text={encoded_message}&apikey={WHATSAPP_API_KEY}"
+        req = urllib.request.Request(
+            url,
+            headers={"User-Agent": "Mozilla/5.0"}
+        )
+        urllib.request.urlopen(req)
+        print("WhatsApp notification sent.")
+    except Exception as e:
+        print(f"WhatsApp notification failed: {e}", file=sys.stderr)
+
+
 def main():
     import time
     print(f"[{time.strftime('%Y-%m-%d %H:%M:%S')}] News agent starting (one-shot mode)...")
@@ -404,6 +426,7 @@ def main():
             "Rehber: x.com'a giriş yap → F12 → Application → Cookies → değerleri kopyala."
         )
         send_discord_notification(msg)
+        send_whatsapp_notification(msg)
 
     if not yt_posts and not x_tweets:
         print("No social media data scraped. Exiting.")

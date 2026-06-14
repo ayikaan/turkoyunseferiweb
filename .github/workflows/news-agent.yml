@@ -30,4 +30,6 @@ jobs:
           YOUTUBE_COOKIE:       ${{ secrets.YOUTUBE_COOKIE }}
           GROQ_MODEL:           ${{ secrets.GROQ_MODEL }}
           DISCORD_WEBHOOK_URL:  ${{ secrets.DISCORD_WEBHOOK_URL }}
+          WHATSAPP_PHONE:       ${{ secrets.WHATSAPP_PHONE }}
+          WHATSAPP_API_KEY:     ${{ secrets.WHATSAPP_API_KEY }}
         run: python news_agent.py
