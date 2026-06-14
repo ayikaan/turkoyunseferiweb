@@ -48,6 +48,8 @@ MODEL_NAME        = os.environ.get("GROQ_MODEL", "llama-3.3-70b-versatile")
 DISCORD_WEBHOOK    = os.environ.get("DISCORD_WEBHOOK_URL", "")
 WHATSAPP_PHONE     = os.environ.get("WHATSAPP_PHONE", "")
 WHATSAPP_API_KEY   = os.environ.get("WHATSAPP_API_KEY", "")
+TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "")
+TELEGRAM_CHAT_ID   = os.environ.get("TELEGRAM_CHAT_ID", "")
 
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
 
@@ -419,6 +421,30 @@ def send_whatsapp_notification(message: str):
         print(f"WhatsApp notification failed: {e}", file=sys.stderr)
 
 
+def send_telegram_notification(message: str):
+    """Send a Telegram message via Bot API. Only called when TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID are set."""
+    if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHAT_ID:
+        return
+    try:
+        # Strip Discord-style bold markers (**) — Telegram uses *text* for italic, not bold
+        tg_message = message.replace("**", "")
+        payload = json.dumps({
+            "chat_id": TELEGRAM_CHAT_ID,
+            "text": tg_message,
+            "parse_mode": "HTML"
+        }).encode("utf-8")
+        url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
+        req = urllib.request.Request(
+            url,
+            data=payload,
+            headers={"Content-Type": "application/json", "User-Agent": "Mozilla/5.0"}
+        )
+        urllib.request.urlopen(req)
+        print("Telegram notification sent.")
+    except Exception as e:
+        print(f"Telegram notification failed: {e}", file=sys.stderr)
+
+
 def main():
     import time
     print(f"[{time.strftime('%Y-%m-%d %H:%M:%S')}] News agent starting (one-shot mode)...")
@@ -444,6 +470,7 @@ def main():
         )
         send_discord_notification(msg)
         send_whatsapp_notification(msg)
+        send_telegram_notification(msg)
 
     if not yt_posts and not x_tweets:
         print("No social media data scraped. Exiting.")
