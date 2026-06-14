@@ -314,8 +314,9 @@ export const GET: RequestHandler = async ({ request, url }) => {
         }
     }
 
-    const groqKey = env.GROQ_API_KEY || process.env.GROQ_API_KEY;
-    if (!groqKey) {
+    const rawKey = env.GROQ_API_KEY || process.env.GROQ_API_KEY || "";
+    const apiKeys = rawKey.split(',').map(k => k.trim()).filter(Boolean);
+    if (apiKeys.length === 0) {
         return json({ error: 'Groq API Key is not configured on server' }, { status: 500 });
     }
 
@@ -351,29 +352,55 @@ export const GET: RequestHandler = async ({ request, url }) => {
 
         // 3. Call Groq
         const modelName = env.GROQ_MODEL || process.env.GROQ_MODEL || "llama-3.3-70b-versatile";
-        const groqResponse = await fetch(GROQ_URL, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${groqKey}`
-            },
-            body: JSON.stringify({
-                model: modelName,
-                messages: [
-                    { role: "system", content: SYSTEM_PROMPT },
-                    { role: "user", content: `Mevcut haberleri ve yeni sosyal medya gönderilerini inceleyerek mükerrer olmayan yeni haberleri üret:\n\n${JSON.stringify(payload, null, 2)}` }
-                ],
-                temperature: 0.2,
-                response_format: { type: "json_object" }
-            })
-        });
+        let content: any = null;
+        let lastError = "";
 
-        const resData = await groqResponse.json();
-        if (!resData.choices || resData.choices.length === 0) {
-            return json({ error: 'Groq API returned empty choices' }, { status: 500 });
+        for (let i = 0; i < apiKeys.length; i++) {
+            const currentKey = apiKeys[i];
+            console.log(`Calling Groq API (${modelName}) with key index ${i}...`);
+            try {
+                const groqResponse = await fetch(GROQ_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${currentKey}`
+                    },
+                    body: JSON.stringify({
+                        model: modelName,
+                        messages: [
+                            { role: "system", content: SYSTEM_PROMPT },
+                            { role: "user", content: `Mevcut haberleri ve yeni sosyal medya gönderilerini inceleyerek mükerrer olmayan yeni haberleri üret:\n\n${JSON.stringify(payload, null, 2)}` }
+                        ],
+                        temperature: 0.2,
+                        response_format: { type: "json_object" }
+                    })
+                });
+
+                if (!groqResponse.ok) {
+                    const errText = await groqResponse.text();
+                    lastError = `Groq API status ${groqResponse.status}: ${errText}`;
+                    console.warn(`Groq API key index ${i} failed: ${lastError}`);
+                    continue;
+                }
+
+                const resData = await groqResponse.json();
+                if (!resData.choices || resData.choices.length === 0) {
+                    lastError = 'Groq API returned empty choices';
+                    console.warn(`Groq API key index ${i} failed: ${lastError}`);
+                    continue;
+                }
+
+                content = JSON.parse(resData.choices[0].message.content);
+                break; // Success!
+            } catch (err: any) {
+                lastError = err.message || "Unknown fetch error";
+                console.warn(`Groq API key index ${i} failed: ${lastError}`);
+            }
         }
 
-        const content = JSON.parse(resData.choices[0].message.content);
+        if (!content) {
+            return json({ error: `All Groq API keys failed. Last error: ${lastError}` }, { status: 500 });
+        }
         const newItems = content.news_items || [];
 
         if (newItems.length === 0) {

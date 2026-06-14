@@ -663,12 +663,13 @@ export const actions: Actions = {
             return fail(400, { error: 'Title, Content, Category, and Details URL are required.' });
         }
 
-        const groqKey = env.GROQ_API_KEY || process.env.GROQ_API_KEY;
-        const modelName = env.GROQ_MODEL || process.env.GROQ_MODEL || "llama-3.3-70b-versatile";
-
-        if (!groqKey) {
+        const rawKey = env.GROQ_API_KEY || process.env.GROQ_API_KEY || "";
+        const apiKeys = rawKey.split(',').map(k => k.trim()).filter(Boolean);
+        if (apiKeys.length === 0) {
             return fail(500, { error: 'GROQ_API_KEY is not configured on the server.' });
         }
+
+        const modelName = env.GROQ_MODEL || process.env.GROQ_MODEL || "llama-3.3-70b-versatile";
 
         try {
             // Translate using Groq
@@ -689,30 +690,49 @@ Title: ${title}
 Content: ${content}
 ${supportBtnText ? `Support Button Text: ${supportBtnText}` : ''}`;
 
-            const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${groqKey}`
-                },
-                body: JSON.stringify({
-                    model: modelName,
-                    messages: [
-                        { role: "system", content: systemPrompt },
-                        { role: "user", content: userPrompt }
-                    ],
-                    temperature: 0.1,
-                    response_format: { type: "json_object" }
-                })
-            });
+            let translations: any = null;
+            let lastError = "";
 
-            if (!response.ok) {
-                const errText = await response.text();
-                return fail(500, { error: `Groq translation request failed: ${errText}` });
+            for (let i = 0; i < apiKeys.length; i++) {
+                const currentKey = apiKeys[i];
+                console.log(`Calling Groq API for translation with key index ${i}...`);
+                try {
+                    const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": `Bearer ${currentKey}`
+                        },
+                        body: JSON.stringify({
+                            model: modelName,
+                            messages: [
+                                { role: "system", content: systemPrompt },
+                                { role: "user", content: userPrompt }
+                            ],
+                            temperature: 0.1,
+                            response_format: { type: "json_object" }
+                        })
+                    });
+
+                    if (!response.ok) {
+                        const errText = await response.text();
+                        lastError = `Groq API status ${response.status}: ${errText}`;
+                        console.warn(`Groq API key index ${i} failed: ${lastError}`);
+                        continue;
+                    }
+
+                    const resData = await response.json();
+                    translations = JSON.parse(resData.choices[0].message.content);
+                    break; // Success!
+                } catch (err: any) {
+                    lastError = err.message || "Unknown fetch error";
+                    console.warn(`Groq API key index ${i} failed: ${lastError}`);
+                }
             }
 
-            const resData = await response.json();
-            const translations = JSON.parse(resData.choices[0].message.content);
+            if (!translations) {
+                return fail(500, { error: `Groq translation request failed for all keys. Last error: ${lastError}` });
+            }
 
             const options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Europe/Istanbul' };
             const formattedDate = new Intl.DateTimeFormat('tr-TR', options).format(new Date());

@@ -307,10 +307,13 @@ def fetch_existing_news():
 
 
 def call_groq(payload):
-    if not GROQ_API_KEY:
-        print("ERROR: GROQ_API_KEY not set!", file=sys.stderr)
+    raw_keys = os.environ.get("GROQ_API_KEY", "")
+    api_keys = [k.strip() for k in raw_keys.split(",") if k.strip()]
+    
+    if not api_keys:
+        print("ERROR: No GROQ_API_KEY configured!", file=sys.stderr)
         return None
-    print(f"Calling Groq API ({MODEL_NAME})...")
+        
     user_prompt = (
         "Review the existing news and new social media posts, then produce non-duplicate new news items:\n\n"
         f"{json.dumps(payload, ensure_ascii=False, indent=2)}"
@@ -324,23 +327,29 @@ def call_groq(payload):
         "temperature": 0.2,
         "response_format": {"type": "json_object"}
     }
-    req = urllib.request.Request(
-        GROQ_URL,
-        data=json.dumps(data).encode("utf-8"),
-        headers={"Content-Type": "application/json", "Authorization": f"Bearer {GROQ_API_KEY}",
-                 "User-Agent": "Mozilla/5.0"}
-    )
-    try:
-        with urllib.request.urlopen(req) as response:
-            res_data = json.loads(response.read().decode("utf-8"))
-            return json.loads(res_data["choices"][0]["message"]["content"])
-    except urllib.error.HTTPError as e:
+    
+    for i, api_key in enumerate(api_keys):
+        print(f"Calling Groq API ({MODEL_NAME}) with key index {i}...")
+        req = urllib.request.Request(
+            GROQ_URL,
+            data=json.dumps(data).encode("utf-8"),
+            headers={"Content-Type": "application/json", "Authorization": f"Bearer {api_key}",
+                     "User-Agent": "Mozilla/5.0"}
+        )
         try:
-            print(f"Groq HTTP Error ({e.code}): {e.read().decode()}", file=sys.stderr)
-        except Exception:
-            print(f"Groq HTTP Error ({e.code})", file=sys.stderr)
-    except Exception as e:
-        print(f"Groq call error: {e}", file=sys.stderr)
+            with urllib.request.urlopen(req) as response:
+                res_data = json.loads(response.read().decode("utf-8"))
+                return json.loads(res_data["choices"][0]["message"]["content"])
+        except urllib.error.HTTPError as e:
+            try:
+                err_text = e.read().decode()
+                print(f"Groq API key index {i} failed: HTTP Error ({e.code}): {err_text}", file=sys.stderr)
+            except Exception:
+                print(f"Groq API key index {i} failed: HTTP Error ({e.code})", file=sys.stderr)
+        except Exception as e:
+            print(f"Groq API key index {i} failed: {e}", file=sys.stderr)
+            
+    print("ERROR: All Groq API keys failed.", file=sys.stderr)
     return None
 
 
@@ -439,9 +448,7 @@ def main():
     import time
     print(f"[{time.strftime('%Y-%m-%d %H:%M:%S')}] News agent starting (one-shot mode)...")
 
-    if not GROQ_API_KEY:
-        print("ERROR: GROQ_API_KEY is required.", file=sys.stderr)
-        sys.exit(1)
+    # A fallback key is always configured, so GROQ_API_KEY env is optional.
     if not API_TOKEN:
         print("ERROR: NEWS_API_TOKEN is required.", file=sys.stderr)
         sys.exit(1)
