@@ -24,12 +24,16 @@ if hasattr(sys.stdout, "reconfigure"):
 if hasattr(sys.stderr, "reconfigure"):
     sys.stderr.reconfigure(encoding="utf-8")
 
-GROQ_API_KEY = os.environ.get("GROQ_API_KEY", "")
-API_URL      = os.environ.get("NEWS_API_URL", "https://turkoyunseferiweb.vercel.app/api/news")
-API_TOKEN    = os.environ.get("NEWS_API_TOKEN", "")
-MODEL_NAME   = os.environ.get("GROQ_MODEL", "llama-3.3-70b-versatile")
+GROQ_API_KEY       = os.environ.get("GROQ_API_KEY", "")
+API_URL            = os.environ.get("NEWS_API_URL", "https://turkoyunseferiweb.vercel.app/api/news")
+API_TOKEN          = os.environ.get("NEWS_API_TOKEN", "")
+MODEL_NAME        = os.environ.get("GROQ_MODEL", "llama-3.3-70b-versatile")
+DISCORD_WEBHOOK    = os.environ.get("DISCORD_WEBHOOK_URL", "")
 
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
+
+# Global flag: set True when X cookie is detected as expired/invalid
+X_COOKIE_EXPIRED = False
 
 SYSTEM_PROMPT = """You are an autonomous news writer AI agent for the "Türkçe Oyun Seferi" (Turkish Game Campaign) community.
 Your task is to analyze new social media posts (from YouTube and X/Twitter), compare them against the "Existing News" already in the database, and produce only genuinely new, non-duplicate news articles.
@@ -195,12 +199,20 @@ def scrape_youtube_posts(limit=5):
 
 
 def scrape_x_community(limit=5):
+    global X_COOKIE_EXPIRED
     x_cookie = os.environ.get("X_COOKIE", "")
     if not x_cookie:
         print("X_COOKIE not set, skipping X scrape.", file=sys.stderr)
         return []
     if x_cookie.startswith('"') and x_cookie.endswith('"'):
         x_cookie = x_cookie[1:-1]
+
+    # Quick pre-check: ct0 (CSRF token) must exist in a valid session cookie
+    if not re.search(r'ct0=([^;]+)', x_cookie) or not re.search(r'auth_token=([^;]+)', x_cookie):
+        print("X_COOKIE missing ct0 or auth_token — cookie is invalid or malformed.", file=sys.stderr)
+        print("::warning::X_COOKIE is invalid (missing ct0/auth_token). Please update the secret.", flush=True)
+        X_COOKIE_EXPIRED = True
+        return []
 
     import urllib.parse
     variables = {"communityId": "1888733402792128619", "count": 20, "withTweetQuoteCount": True,
@@ -222,21 +234,17 @@ def scrape_x_community(limit=5):
                 "longform_notetweets_inline_expand_super_tweet_enabled": True,
                 "responsive_web_enhance_cards_enabled": False}
 
+    csrf = re.search(r'ct0=([^;]+)', x_cookie).group(1)
     query_url = (f"https://x.com/i/api/graphql/mO0T1BvIee2Q5Hk7547_rQ/CommunityTweetsTimeline"
                  f"?variables={urllib.parse.quote(json.dumps(variables))}"
                  f"&features={urllib.parse.quote(json.dumps(features))}")
-    csrf = ""
-    csrf_m = re.search(r'ct0=([^;]+)', x_cookie)
-    if csrf_m:
-        csrf = csrf_m.group(1)
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
         'Accept': '*/*', 'Accept-Language': 'tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7',
         'Authorization': 'Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejfCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA',
-        'Cookie': x_cookie, 'x-twitter-active-user': 'yes', 'x-twitter-client-language': 'tr'
+        'Cookie': x_cookie, 'x-twitter-active-user': 'yes', 'x-twitter-client-language': 'tr',
+        'x-csrf-token': csrf
     }
-    if csrf:
-        headers['x-csrf-token'] = csrf
     print("Scraping X Community posts (GraphQL API)...")
     try:
         req = urllib.request.Request(query_url, headers=headers)
@@ -262,6 +270,15 @@ def scrape_x_community(limit=5):
                         find_tweets_recursive(item)
             find_tweets_recursive(res_data)
             return tweets[:limit]
+    except urllib.error.HTTPError as e:
+        if e.code in (401, 403):
+            # Cookie expired or revoked
+            print(f"X scrape failed with HTTP {e.code} — session cookie has expired.", file=sys.stderr)
+            # GitHub Actions warning annotation (shows orange banner in Actions UI)
+            print("::warning::X_COOKIE has expired (HTTP 401/403). Go to GitHub repo Settings > Secrets and update X_COOKIE.", flush=True)
+            X_COOKIE_EXPIRED = True
+        else:
+            print(f"X scrape HTTP error: {e.code}", file=sys.stderr)
     except Exception as e:
         print(f"X scrape error: {e}", file=sys.stderr)
     return []
@@ -346,6 +363,23 @@ def publish_news(item):
     return False
 
 
+def send_discord_notification(message: str):
+    """Send a Discord webhook message. Only called when DISCORD_WEBHOOK_URL is set."""
+    if not DISCORD_WEBHOOK:
+        return
+    try:
+        payload = json.dumps({"content": message, "username": "Türkçe Oyun Seferi Ajan"}).encode("utf-8")
+        req = urllib.request.Request(
+            DISCORD_WEBHOOK,
+            data=payload,
+            headers={"Content-Type": "application/json", "User-Agent": "Mozilla/5.0"}
+        )
+        urllib.request.urlopen(req)
+        print("Discord notification sent.")
+    except Exception as e:
+        print(f"Discord notification failed: {e}", file=sys.stderr)
+
+
 def main():
     import time
     print(f"[{time.strftime('%Y-%m-%d %H:%M:%S')}] News agent starting (one-shot mode)...")
@@ -360,6 +394,16 @@ def main():
     existing_news = fetch_existing_news()
     yt_posts = scrape_youtube_posts(limit=5)
     x_tweets = scrape_x_community(limit=5)
+
+    # Cookie expiry notification
+    if X_COOKIE_EXPIRED:
+        msg = (
+            "⚠️ **X (Twitter) Cookie Süresi Doldu!**\n"
+            "Haber ajanı yalnızca YouTube ile çalışıyor.\n"
+            "Lütfen GitHub repo'nun **Settings → Secrets → X_COOKIE** alanını güncel cookie ile değiştirin.\n"
+            "Rehber: x.com'a giriş yap → F12 → Application → Cookies → değerleri kopyala."
+        )
+        send_discord_notification(msg)
 
     if not yt_posts and not x_tweets:
         print("No social media data scraped. Exiting.")
