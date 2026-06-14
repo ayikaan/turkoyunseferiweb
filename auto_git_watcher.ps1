@@ -20,5 +20,5 @@ while ($true) {
             git push origin $branch
         }
     }
-    Start-Sleep -Seconds 10
+    Start-Sleep -Seconds 300
 }
