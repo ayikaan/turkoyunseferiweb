@@ -2,43 +2,169 @@ import { fail, redirect } from '@sveltejs/kit';
 import type { PageServerLoad, Actions } from './$types';
 import { db } from '$lib/server/db';
 import { env } from '$env/dynamic/private';
+import fs from 'fs';
+import path from 'path';
+import { encryptText, decryptText, hashValue } from '$lib/server/crypto';
 
-async function hashPassword(password: string): Promise<string> {
-    const encoder = new TextEncoder();
-    const data = encoder.encode(password);
-    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
-    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+function getDeviceId(cookies: any) {
+    let deviceId = cookies.get('device_id');
+    if (!deviceId) {
+        deviceId = crypto.randomUUID();
+        cookies.set('device_id', deviceId, {
+            path: '/',
+            httpOnly: true,
+            secure: true,
+            sameSite: 'strict',
+            maxAge: 60 * 60 * 24 * 365 * 10 // 10 years
+        });
+    }
+    return deviceId;
 }
 
-async function getAdminPassword(): Promise<string | null> {
+async function checkRateLimit(ip: string) {
     try {
-        const result = await db.execute("SELECT value FROM settings WHERE key = 'admin_password'");
+        const result = await db.execute({
+            sql: "SELECT attempts, last_attempt FROM login_attempts WHERE ip_address = ?",
+            args: [ip]
+        });
         if (result.rows.length > 0) {
-            return result.rows[0].value as string;
+            const attempts = Number(result.rows[0].attempts);
+            const lastAttemptStr = result.rows[0].last_attempt as string;
+            const lastAttempt = new Date(lastAttemptStr).getTime();
+            const now = Date.now();
+            const diffMin = (now - lastAttempt) / (1000 * 60);
+
+            if (attempts >= 5) {
+                if (diffMin < 15) {
+                    return { blocked: true, remainingTime: Math.ceil(15 - diffMin) };
+                } else {
+                    await db.execute({
+                        sql: "DELETE FROM login_attempts WHERE ip_address = ?",
+                        args: [ip]
+                    });
+                }
+            }
         }
     } catch (e) {
-        console.error('Error fetching admin password:', e);
+        console.error('Rate limit error:', e);
     }
-    return null;
+    return { blocked: false };
 }
 
-export const load: PageServerLoad = async ({ cookies }) => {
-    const adminPassword = await getAdminPassword();
-    const hasPassword = adminPassword !== null;
+async function recordFailedAttempt(ip: string) {
+    try {
+        const result = await db.execute({
+            sql: "SELECT attempts FROM login_attempts WHERE ip_address = ?",
+            args: [ip]
+        });
+        const now = new Date().toISOString();
+        if (result.rows.length > 0) {
+            const newAttempts = Number(result.rows[0].attempts) + 1;
+            await db.execute({
+                sql: "UPDATE login_attempts SET attempts = ?, last_attempt = ? WHERE ip_address = ?",
+                args: [newAttempts, now, ip]
+            });
+        } else {
+            await db.execute({
+                sql: "INSERT INTO login_attempts (ip_address, attempts, last_attempt) VALUES (?, 1, ?)",
+                args: [ip, now]
+            });
+        }
+    } catch (e) {
+        console.error('Record failed attempt error:', e);
+    }
+}
+
+async function resetFailedAttempts(ip: string) {
+    try {
+        await db.execute({
+            sql: "DELETE FROM login_attempts WHERE ip_address = ?",
+            args: [ip]
+        });
+    } catch (e) {
+        console.error('Reset failed attempts error:', e);
+    }
+}
+
+async function checkAuth(cookies: any) {
+    const sessionCookie = cookies.get('admin_session');
+    if (!sessionCookie) return { authenticated: false };
+
+    try {
+        const decrypted = await decryptText(sessionCookie);
+        const [userId, deviceId] = decrypted.split(':');
+        if (!userId || !deviceId) return { authenticated: false };
+
+        const userResult = await db.execute({
+            sql: "SELECT id, username_encrypted, is_owner FROM admin_users WHERE id = ?",
+            args: [userId]
+        });
+        if (userResult.rows.length === 0) return { authenticated: false };
+
+        const deviceResult = await db.execute({
+            sql: "SELECT is_approved FROM approved_devices WHERE device_id = ?",
+            args: [deviceId]
+        });
+        if (deviceResult.rows.length === 0 || deviceResult.rows[0].is_approved !== 1) {
+            return { authenticated: false };
+        }
+
+        const username = await decryptText(userResult.rows[0].username_encrypted as string);
+
+        return {
+            authenticated: true,
+            user: {
+                id: userResult.rows[0].id,
+                username,
+                isOwner: userResult.rows[0].is_owner === 1
+            }
+        };
+    } catch (e) {
+        console.error('Auth check error:', e);
+        return { authenticated: false };
+    }
+}
+
+function getScrapedStats() {
+    try {
+        const cacheFilePath = path.resolve('src/lib/stats-cache.json');
+        if (fs.existsSync(cacheFilePath)) {
+            return JSON.parse(fs.readFileSync(cacheFilePath, 'utf8'));
+        }
+    } catch (e) {
+        console.error('Error reading stats cache in admin server:', e);
+    }
+    return {
+        youtubeSubscribers: '57,4 B',
+        youtubeVideos: '776',
+        steamGroupMembers: '1.101',
+        steamGroupOnline: '380',
+        steamLevel: '45',
+        steamFriends: '294',
+        xCommunityMembers: '4,7 B'
+    };
+}
+
+export const load: PageServerLoad = async ({ cookies, getClientAddress }) => {
+    const deviceId = getDeviceId(cookies);
+    
+    const userCheck = await db.execute("SELECT COUNT(*) as count FROM admin_users");
+    const hasPassword = Number(userCheck.rows[0]?.count || 0) > 0;
 
     if (!hasPassword) {
         return {
             hasPassword: false,
-            authenticated: false
+            authenticated: false,
+            deviceId
         };
     }
 
-    const sessionCookie = cookies.get('admin_session');
-    if (!sessionCookie || sessionCookie !== adminPassword) {
+    const auth = await checkAuth(cookies);
+    if (!auth.authenticated) {
         return {
             hasPassword: true,
-            authenticated: false
+            authenticated: false,
+            deviceId
         };
     }
 
@@ -63,75 +189,215 @@ export const load: PageServerLoad = async ({ cookies }) => {
             settings[row.key as string] = row.value as string;
         }
 
+        // If current user is owner, fetch admins and devices
+        let admins: any[] = [];
+        let devices: any[] = [];
+        if (auth.user?.isOwner) {
+            const adminsResult = await db.execute("SELECT id, username_encrypted, is_owner, created_at FROM admin_users ORDER BY created_at DESC");
+            for (const row of adminsResult.rows) {
+                try {
+                    const username = await decryptText(row.username_encrypted as string);
+                    admins.push({
+                        id: row.id,
+                        username,
+                        is_owner: row.is_owner === 1,
+                        created_at: row.created_at
+                      });
+                } catch (err) {
+                    console.error('Error decrypting username:', err);
+                }
+            }
+
+            const devicesResult = await db.execute("SELECT * FROM approved_devices ORDER BY created_at DESC");
+            devices = devicesResult.rows.map((row: any) => ({
+                device_id: row.device_id,
+                user_agent: row.user_agent,
+                ip_address: row.ip_address,
+                is_approved: row.is_approved === 1,
+                created_at: row.created_at,
+                approved_at: row.approved_at,
+                name: row.name
+            }));
+        }
+
         return {
             hasPassword: true,
             authenticated: true,
+            currentUser: auth.user,
             news: newsItems,
-            settings
+            settings,
+            admins,
+            devices,
+            scrapedStats: getScrapedStats()
         };
     } catch (e) {
         console.error('Error loading admin page data:', e);
         return {
             hasPassword: true,
             authenticated: true,
+            currentUser: auth.user,
             news: [],
-            settings: {}
+            settings: {},
+            admins: [],
+            devices: [],
+            scrapedStats: getScrapedStats()
         };
     }
 };
 
 export const actions: Actions = {
-    setPassword: async ({ request, cookies }) => {
+    setPassword: async ({ request, cookies, getClientAddress }) => {
+        const userCheck = await db.execute("SELECT COUNT(*) as count FROM admin_users");
+        if (Number(userCheck.rows[0]?.count || 0) > 0) {
+            return fail(400, { error: 'Kurulum zaten tamamlanmış.' });
+        }
+
         const data = await request.formData();
+        const username = data.get('username')?.toString();
         const password = data.get('password')?.toString();
 
+        if (!username || username.length < 3) {
+            return fail(400, { error: 'Kullanıcı adı en az 3 karakter olmalıdır.' });
+        }
         if (!password || password.length < 6) {
-            return fail(400, { error: 'Password must be at least 6 characters.' });
+            return fail(400, { error: 'Şifre en az 6 karakter olmalıdır.' });
         }
 
-        const existingPassword = await getAdminPassword();
-        if (existingPassword !== null) {
-            return fail(400, { error: 'Password is already set.' });
-        }
+        const deviceId = getDeviceId(cookies);
+        const clientIp = getClientAddress();
+        const userAgent = request.headers.get('user-agent') || 'Bilinmeyen Cihaz';
 
-        const hashedPassword = await hashPassword(password);
         try {
+            const usernameHash = await hashValue(username.toLowerCase());
+            const usernameEnc = await encryptText(username);
+            const passwordHash = await hashValue(password);
+            const userId = crypto.randomUUID();
+
             await db.execute({
-                sql: "INSERT OR REPLACE INTO settings (key, value) VALUES ('admin_password', ?)",
-                args: [hashedPassword]
+                sql: "INSERT INTO admin_users (id, username_encrypted, username_hash, password_hash, is_owner, created_at) VALUES (?, ?, ?, ?, 1, ?)",
+                args: [userId, usernameEnc, usernameHash, passwordHash, new Date().toISOString()]
             });
-            cookies.set('admin_session', hashedPassword, {
+
+            // Automatically approve the initial setup device
+            await db.execute({
+                sql: "INSERT OR REPLACE INTO approved_devices (device_id, user_agent, ip_address, is_approved, created_at, approved_at, name) VALUES (?, ?, ?, 1, ?, ?, ?)",
+                args: [deviceId, userAgent, clientIp, new Date().toISOString(), new Date().toISOString(), 'Kurucu Cihaz']
+            });
+
+            const sessionValue = await encryptText(`${userId}:${deviceId}`);
+            cookies.set('admin_session', sessionValue, {
                 path: '/',
                 httpOnly: true,
                 sameSite: 'strict',
                 secure: true,
                 maxAge: 60 * 60 * 24 * 7 // 1 week
             });
+
             return { success: true };
         } catch (e: any) {
-            return fail(500, { error: e.message || 'Failed to save password.' });
+            return fail(500, { error: e.message || 'Kurulum başarısız oldu.' });
         }
     },
 
-    login: async ({ request, cookies }) => {
+    checkUsername: async ({ request, cookies, getClientAddress }) => {
+        const clientIp = getClientAddress();
+        const rateLimit = await checkRateLimit(clientIp);
+        if (rateLimit.blocked) {
+            return fail(429, { error: `Çok fazla başarısız deneme. Lütfen ${rateLimit.remainingTime} dakika sonra tekrar deneyin.` });
+        }
+
         const data = await request.formData();
+        const username = data.get('username')?.toString();
+        if (!username) {
+            return fail(400, { error: 'Kullanıcı adı gereklidir.' });
+        }
+
+        const usernameHash = await hashValue(username.toLowerCase());
+        const userResult = await db.execute({
+            sql: "SELECT id FROM admin_users WHERE username_hash = ?",
+            args: [usernameHash]
+        });
+
+        if (userResult.rows.length === 0) {
+            await recordFailedAttempt(clientIp);
+            return fail(400, { error: 'Kullanıcı adı bulunamadı.' });
+        }
+
+        // Register the device if it's new
+        const deviceId = getDeviceId(cookies);
+        const deviceCheck = await db.execute({
+            sql: "SELECT is_approved FROM approved_devices WHERE device_id = ?",
+            args: [deviceId]
+        });
+
+        let isApproved = false;
+        if (deviceCheck.rows.length > 0) {
+            isApproved = deviceCheck.rows[0].is_approved === 1;
+        } else {
+            const userAgent = request.headers.get('user-agent') || 'Bilinmeyen Cihaz';
+            let deviceName = 'Tarayıcı';
+            if (userAgent.includes('Windows')) deviceName = 'Windows Cihaz';
+            else if (userAgent.includes('Macintosh')) deviceName = 'Mac Cihaz';
+            else if (userAgent.includes('Android')) deviceName = 'Android Cihaz';
+            else if (userAgent.includes('iPhone')) deviceName = 'iPhone Cihaz';
+
+            await db.execute({
+                sql: "INSERT INTO approved_devices (device_id, user_agent, ip_address, is_approved, created_at, name) VALUES (?, ?, ?, 0, ?, ?)",
+                args: [deviceId, userAgent, clientIp, new Date().toISOString(), deviceName]
+            });
+        }
+
+        return { success: true, username, isApproved };
+    },
+
+    login: async ({ request, cookies, getClientAddress }) => {
+        const clientIp = getClientAddress();
+        const rateLimit = await checkRateLimit(clientIp);
+        if (rateLimit.blocked) {
+            return fail(429, { error: `Çok fazla başarısız deneme. Lütfen ${rateLimit.remainingTime} dakika sonra tekrar deneyin.` });
+        }
+
+        const data = await request.formData();
+        const username = data.get('username')?.toString();
         const password = data.get('password')?.toString();
 
-        if (!password) {
-            return fail(400, { error: 'Password is required.' });
+        if (!username || !password) {
+            return fail(400, { error: 'Kullanıcı adı ve şifre gereklidir.' });
         }
 
-        const adminPassword = await getAdminPassword();
-        if (!adminPassword) {
-            return fail(400, { error: 'No admin password set yet.' });
+        const usernameHash = await hashValue(username.toLowerCase());
+        const passwordHash = await hashValue(password);
+
+        const userResult = await db.execute({
+            sql: "SELECT id, is_owner FROM admin_users WHERE username_hash = ? AND password_hash = ?",
+            args: [usernameHash, passwordHash]
+        });
+
+        if (userResult.rows.length === 0) {
+            await recordFailedAttempt(clientIp);
+            return fail(400, { error: 'Hatalı kullanıcı adı veya şifre.' });
         }
 
-        const hashedPassword = await hashPassword(password);
-        if (hashedPassword !== adminPassword) {
-            return fail(400, { error: 'Incorrect password.' });
+        const userId = userResult.rows[0].id as string;
+        const deviceId = getDeviceId(cookies);
+
+        // Reset rate limits on success
+        await resetFailedAttempts(clientIp);
+
+        // Check device approval
+        const deviceCheck = await db.execute({
+            sql: "SELECT is_approved FROM approved_devices WHERE device_id = ?",
+            args: [deviceId]
+        });
+
+        const isApproved = deviceCheck.rows.length > 0 && deviceCheck.rows[0].is_approved === 1;
+        if (!isApproved) {
+            return { success: false, devicePending: true, username, deviceId };
         }
 
-        cookies.set('admin_session', hashedPassword, {
+        // Generate session
+        const sessionValue = await encryptText(`${userId}:${deviceId}`);
+        cookies.set('admin_session', sessionValue, {
             path: '/',
             httpOnly: true,
             sameSite: 'strict',
@@ -147,11 +413,136 @@ export const actions: Actions = {
         throw redirect(303, '/admin');
     },
 
+    addAdminUser: async ({ request, cookies }) => {
+        const auth = await checkAuth(cookies);
+        if (!auth.authenticated || !auth.user?.isOwner) {
+            return fail(403, { error: 'Bu işlem için yetkiniz yok.' });
+        }
+
+        const data = await request.formData();
+        const username = data.get('username')?.toString();
+        const password = data.get('password')?.toString();
+
+        if (!username || username.length < 3) {
+            return fail(400, { error: 'Kullanıcı adı en az 3 karakter olmalıdır.' });
+        }
+        if (!password || password.length < 6) {
+            return fail(400, { error: 'Şifre en az 6 karakter olmalıdır.' });
+        }
+
+        try {
+            const usernameHash = await hashValue(username.toLowerCase());
+            
+            // Check if user already exists
+            const userCheck = await db.execute({
+                sql: "SELECT COUNT(*) as count FROM admin_users WHERE username_hash = ?",
+                args: [usernameHash]
+            });
+            if (Number(userCheck.rows[0]?.count || 0) > 0) {
+                return fail(400, { error: 'Bu kullanıcı adı zaten kullanımda.' });
+            }
+
+            const usernameEnc = await encryptText(username);
+            const passwordHash = await hashValue(password);
+            const userId = crypto.randomUUID();
+
+            await db.execute({
+                sql: "INSERT INTO admin_users (id, username_encrypted, username_hash, password_hash, is_owner, created_at) VALUES (?, ?, ?, ?, 0, ?)",
+                args: [userId, usernameEnc, usernameHash, passwordHash, new Date().toISOString()]
+            });
+
+            return { success: true };
+        } catch (e: any) {
+            return fail(500, { error: e.message || 'Kullanıcı eklenemedi.' });
+        }
+    },
+
+    deleteAdminUser: async ({ request, cookies }) => {
+        const auth = await checkAuth(cookies);
+        if (!auth.authenticated || !auth.user?.isOwner) {
+            return fail(403, { error: 'Bu işlem için yetkiniz yok.' });
+        }
+
+        const data = await request.formData();
+        const targetUserId = data.get('id')?.toString();
+        if (!targetUserId) {
+            return fail(400, { error: 'Kullanıcı ID gereklidir.' });
+        }
+
+        // Check if target is owner (cannot delete owner)
+        const targetCheck = await db.execute({
+            sql: "SELECT is_owner FROM admin_users WHERE id = ?",
+            args: [targetUserId]
+        });
+        
+        if (targetCheck.rows.length === 0) {
+            return fail(400, { error: 'Kullanıcı bulunamadı.' });
+        }
+        
+        if (targetCheck.rows[0].is_owner === 1) {
+            return fail(400, { error: 'Kurucu yöneticinin yetkileri değiştirilemez veya silinemez.' });
+        }
+
+        try {
+            await db.execute({
+                sql: "DELETE FROM admin_users WHERE id = ?",
+                args: [targetUserId]
+            });
+            return { success: true };
+        } catch (e: any) {
+            return fail(500, { error: e.message || 'Kullanıcı silinemedi.' });
+        }
+    },
+
+    approveDevice: async ({ request, cookies }) => {
+        const auth = await checkAuth(cookies);
+        if (!auth.authenticated || !auth.user?.isOwner) {
+            return fail(403, { error: 'Bu işlem için yetkiniz yok.' });
+        }
+
+        const data = await request.formData();
+        const deviceId = data.get('device_id')?.toString();
+        if (!deviceId) {
+            return fail(400, { error: 'Cihaz ID gereklidir.' });
+        }
+
+        try {
+            await db.execute({
+                sql: "UPDATE approved_devices SET is_approved = 1, approved_at = ? WHERE device_id = ?",
+                args: [new Date().toISOString(), deviceId]
+            });
+            return { success: true };
+        } catch (e: any) {
+            return fail(500, { error: e.message || 'Cihaz onaylanamadı.' });
+        }
+    },
+
+    revokeDevice: async ({ request, cookies }) => {
+        const auth = await checkAuth(cookies);
+        if (!auth.authenticated || !auth.user?.isOwner) {
+            return fail(403, { error: 'Bu işlem için yetkiniz yok.' });
+        }
+
+        const data = await request.formData();
+        const deviceId = data.get('device_id')?.toString();
+        if (!deviceId) {
+            return fail(400, { error: 'Cihaz ID gereklidir.' });
+        }
+
+        try {
+            await db.execute({
+                sql: "UPDATE approved_devices SET is_approved = 0 WHERE device_id = ?",
+                args: [deviceId]
+            });
+            return { success: true };
+        } catch (e: any) {
+            return fail(500, { error: e.message || 'Cihaz yetkisi kaldırılamadı.' });
+        }
+    },
+
     saveSettings: async ({ request, cookies }) => {
-        // Auth Check
-        const adminPassword = await getAdminPassword();
-        const sessionCookie = cookies.get('admin_session');
-        if (!sessionCookie || sessionCookie !== adminPassword) {
+        const auth = await checkAuth(cookies);
+        if (!auth.authenticated) {
             return fail(403, { error: 'Unauthorized' });
         }
 
@@ -182,11 +573,32 @@ export const actions: Actions = {
         }
     },
 
+    saveAgentStatus: async ({ request, cookies }) => {
+        const auth = await checkAuth(cookies);
+        if (!auth.authenticated) {
+            return fail(403, { error: 'Unauthorized' });
+        }
+
+        const data = await request.formData();
+        const agent_enabled = data.get('agent_enabled')?.toString();
+
+        if (agent_enabled !== undefined) {
+            try {
+                await db.execute({
+                    sql: "INSERT OR REPLACE INTO settings (key, value) VALUES ('agent_enabled', ?)",
+                    args: [agent_enabled]
+                });
+                return { success: true };
+            } catch (e: any) {
+                return fail(500, { error: e.message || 'Failed to save agent status.' });
+            }
+        }
+        return fail(400, { error: 'Invalid data.' });
+    },
+
     triggerAgent: async ({ fetch, cookies }) => {
-        // Auth Check
-        const adminPassword = await getAdminPassword();
-        const sessionCookie = cookies.get('admin_session');
-        if (!sessionCookie || sessionCookie !== adminPassword) {
+        const auth = await checkAuth(cookies);
+        if (!auth.authenticated) {
             return fail(403, { error: 'Unauthorized' });
         }
 
@@ -209,10 +621,8 @@ export const actions: Actions = {
     },
 
     deleteNews: async ({ request, cookies }) => {
-        // Auth Check
-        const adminPassword = await getAdminPassword();
-        const sessionCookie = cookies.get('admin_session');
-        if (!sessionCookie || sessionCookie !== adminPassword) {
+        const auth = await checkAuth(cookies);
+        if (!auth.authenticated) {
             return fail(403, { error: 'Unauthorized' });
         }
 
@@ -234,11 +644,9 @@ export const actions: Actions = {
         }
     },
 
-    saveNews: async ({ request, cookies }) => {
-        // Auth Check
-        const adminPassword = await getAdminPassword();
-        const sessionCookie = cookies.get('admin_session');
-        if (!sessionCookie || sessionCookie !== adminPassword) {
+    saveNews: async ({ request, cookies, fetch }) => {
+        const auth = await checkAuth(cookies);
+        if (!auth.authenticated) {
             return fail(403, { error: 'Unauthorized' });
         }
 
@@ -333,7 +741,6 @@ ${supportBtnText ? `Support Button Text: ${supportBtnText}` : ''}`;
                 });
             } else {
                 // INSERT new item
-                // Generate a unique hyphenated slug in Turkish from title
                 const slug = title
                     .toLowerCase()
                     .replace(/[^a-z0-9ğüşıöç\s-]/g, '')

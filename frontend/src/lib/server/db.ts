@@ -49,6 +49,37 @@ async function initDb() {
             )
         `);
 
+        await db.execute(`
+            CREATE TABLE IF NOT EXISTS admin_users (
+                id TEXT PRIMARY KEY,
+                username_encrypted TEXT NOT NULL,
+                username_hash TEXT NOT NULL UNIQUE,
+                password_hash TEXT NOT NULL,
+                is_owner INTEGER DEFAULT 0,
+                created_at TEXT NOT NULL
+            )
+        `);
+
+        await db.execute(`
+            CREATE TABLE IF NOT EXISTS approved_devices (
+                device_id TEXT PRIMARY KEY,
+                user_agent TEXT,
+                ip_address TEXT,
+                is_approved INTEGER DEFAULT 0,
+                created_at TEXT NOT NULL,
+                approved_at TEXT,
+                name TEXT
+            )
+        `);
+
+        await db.execute(`
+            CREATE TABLE IF NOT EXISTS login_attempts (
+                ip_address TEXT PRIMARY KEY,
+                attempts INTEGER DEFAULT 0,
+                last_attempt TEXT
+            )
+        `);
+
         // Seed settings table if empty
         const settingsCheck = await db.execute("SELECT COUNT(*) as count FROM settings");
         if (Number(settingsCheck.rows[0]?.count || 0) === 0) {
