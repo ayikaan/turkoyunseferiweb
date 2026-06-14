@@ -16,7 +16,7 @@ if os.path.exists(env_path):
                         val = val[1:-1]
                     os.environ[key] = val
 
-api_url = os.environ.get("NEWS_API_URL", "https://turkoyunseferiweb.vercel.app/api/news")
+api_url = os.environ.get("NEWS_API_URL", "https://turkoyunseferi.pages.dev/api/news")
 api_token = os.environ.get("NEWS_API_TOKEN", "")
 
 # Fetch current news items

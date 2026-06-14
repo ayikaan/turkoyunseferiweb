@@ -31,7 +31,7 @@ def load_env_file():
 load_env_file()
 
 GROQ_API_KEY       = os.environ.get("GROQ_API_KEY", "")
-API_URL            = os.environ.get("NEWS_API_URL", "https://turkoyunseferiweb.vercel.app/api/news")
+API_URL            = os.environ.get("NEWS_API_URL", "https://turkoyunseferi.pages.dev/api/news")
 API_TOKEN          = os.environ.get("NEWS_API_TOKEN", "")
 MODEL_NAME        = os.environ.get("GROQ_MODEL", "llama-3.3-70b-versatile")
 DISCORD_WEBHOOK    = os.environ.get("DISCORD_WEBHOOK_URL", "")
