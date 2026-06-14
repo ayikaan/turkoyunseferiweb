@@ -127,7 +127,7 @@
 {#snippet brandName()}
 	<div class="brand-signature-logo">
 		{#if currentLanguage.value === 'tr'}
-			<span class="brand-bold">Türkçe</span><span class="brand-light"> Oyun Seferi</span>
+			<span class="brand-bold">Türkçe</span><span class="brand-light">Oyun Seferi</span>
 		{:else if currentLanguage.value === 'en'}
 			<span class="brand-bold">TURKISH GAME</span><span class="brand-light"> INITIATIVE</span>
 		{:else if currentLanguage.value === 'de'}
