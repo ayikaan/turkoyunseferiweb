@@ -87,16 +87,6 @@
 		dropdownOpen = false;
 	}
 
-	let creatorModalOpen = $state(false);
-
-	function openCreatorModal() {
-		creatorModalOpen = true;
-	}
-
-	function closeCreatorModal() {
-		creatorModalOpen = false;
-	}
-
 	const nativeLanguageNames: Record<string, string> = {
 		tr: 'Türkçe',
 		en: 'English',
@@ -351,37 +341,14 @@
 				<div>&copy; 2026 {t.footer.copyright}</div>
 				<div style="display: flex; align-items: center; gap: 5px;">
 					{t.footer.designed_by} 
-					<button onclick={openCreatorModal} class="signature-btn" style="background: none; border: none; padding: 0; margin: 0; cursor: pointer; display: inline-flex; align-items: center; outline: none;">
+					<a href="/support" class="signature-btn" style="background: none; border: none; padding: 0; margin: 0; cursor: pointer; display: inline-flex; align-items: center; outline: none; text-decoration: none;">
 						<span class="signature" style="font-size: 1.1rem; line-height: 1;">ayiikan</span>
-					</button>
+					</a>
 				</div>
 			</div>
 		</div>
 	</footer>
 </div>
-
-{#if creatorModalOpen}
-	<!-- Modal Overlay -->
-	<div role="button" tabindex="0" class="modal-overlay" onclick={closeCreatorModal} onkeydown={(e) => e.key === 'Escape' && closeCreatorModal()}>
-		<div role="dialog" aria-modal="true" tabindex="-1" class="modal-content" onclick={(e) => e.stopPropagation()}>
-			<button class="modal-close-btn" onclick={closeCreatorModal} aria-label="Close modal">
-				<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-					<line x1="18" y1="6" x2="6" y2="18"></line>
-					<line x1="6" y1="6" x2="18" y2="18"></line>
-				</svg>
-			</button>
-			<h3 style="font-size: 1.25rem; margin-top: 5px; margin-bottom: 16px; color: var(--accent-color); font-weight: 800; border: none; padding-bottom: 0; text-align: left; text-transform: uppercase; letter-spacing: 0.5px;">
-				{t.footer.creator_support_title}
-			</h3>
-			<p style="color: var(--text-secondary); font-size: 0.88rem; line-height: 1.6; margin-bottom: 24px; text-align: left;">
-				{t.footer.creator_support_desc}
-			</p>
-			<a href="https://buymeacoffee.com/ayiikan" target="_blank" rel="noopener noreferrer" class="btn-coffee-premium" onclick={closeCreatorModal} style="width: 100%; justify-content: center; text-align: center;">
-				☕ {@html t.footer.creator_support_cta.replace('ayiikan', '<span class="signature-text">ayiikan</span>')}
-			</a>
-		</div>
-	</div>
-{/if}
 
 <style>
 	.lang-selector-container {
