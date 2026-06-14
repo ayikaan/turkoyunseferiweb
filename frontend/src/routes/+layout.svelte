@@ -377,7 +377,7 @@
 				{t.footer.creator_support_desc}
 			</p>
 			<a href="https://buymeacoffee.com/ayiikan" target="_blank" rel="noopener noreferrer" class="btn-coffee-premium" onclick={closeCreatorModal} style="width: 100%; justify-content: center; text-align: center;">
-				Ôİò {@html t.footer.creator_support_cta.replace('ayiikan', '<span class="signature-text">ayiikan</span>')}
+				☕ {@html t.footer.creator_support_cta.replace('ayiikan', '<span class="signature-text">ayiikan</span>')}
 			</a>
 		</div>
 	</div>
