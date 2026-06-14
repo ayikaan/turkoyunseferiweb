@@ -10,11 +10,16 @@ let dbUrl = tursoUrl;
 let dbToken = tursoToken;
 
 if (!dbUrl) {
-    const dbDir = path.resolve('src/lib/server');
-    if (!fs.existsSync(dbDir)) {
-        fs.mkdirSync(dbDir, { recursive: true });
+    try {
+        const dbDir = path.resolve('src/lib/server');
+        if (!fs.existsSync(dbDir)) {
+            fs.mkdirSync(dbDir, { recursive: true });
+        }
+        dbUrl = `file:${path.join(dbDir, 'news.db')}`;
+    } catch (e) {
+        console.warn("Local database directory is not writable, falling back to in-memory database:", e);
+        dbUrl = "file::memory:";
     }
-    dbUrl = `file:${path.join(dbDir, 'news.db')}`;
 }
 
 export const db = createClient({
