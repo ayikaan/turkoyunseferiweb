@@ -1,15 +1,3 @@
-"""
-One-shot news agent — designed for GitHub Actions / cron schedulers.
-Runs once and exits. All config via environment variables or GitHub Actions secrets.
-
-Required env vars:
-  GROQ_API_KEY      - Groq API key
-  NEWS_API_URL      - Target API URL (e.g. https://turkoyunseferiweb.vercel.app/api/news)
-  NEWS_API_TOKEN    - Bearer token for news API
-  X_COOKIE          - Twitter/X session cookies string
-  GROQ_MODEL        - (optional) Groq model name, default: llama-3.3-70b-versatile
-  YOUTUBE_COOKIE    - (optional) YouTube session cookie string
-"""
 import json
 import urllib.request
 import urllib.error
@@ -17,6 +5,7 @@ import sys
 import os
 import re
 import datetime
+import difflib
 
 # Force UTF-8
 if hasattr(sys.stdout, "reconfigure"):
@@ -35,7 +24,7 @@ def load_env_file():
                         if len(parts) == 2:
                             key, val = parts[0].strip(), parts[1].strip()
                             if (val.startswith('"') and val.endswith('"')) or (val.startswith("'") and val.endswith("'")):
-                                val = val[1:-1]
+                                  val = val[1:-1]
                             if key not in os.environ:
                                 os.environ[key] = val
 
@@ -64,6 +53,7 @@ Your task is to analyze new social media posts (from YouTube and X/Twitter), com
 2. A candidate is a DUPLICATE if it reports the SAME real-world development as an existing news item — even if the wording, title, or phrasing is different. The decisive factor is the real-world event outcome:
    - "Turkish language support confirmed for Game X" == "Game X will ship with Turkish" → DUPLICATE
    - "Developer contacted about Turkish support for Game X" vs "Turkish support officially added to Game X" → DIFFERENT events, NOT duplicates
+   - If a post talks about an event or game that has already been published/updated in the existing news (e.g. Alien Isolation 2, Clutch, Fable) with the same milestone state, mark it as DUPLICATE.
 3. Between YouTube and X candidates covering the same event: YouTube ALWAYS takes priority. Mark the X post as duplicate.
 4. On system restart, the "existing_news" list is already populated — check every candidate against it before writing anything new.
 
@@ -482,7 +472,57 @@ def main():
         for item in existing_news
     ]
 
-    payload = {"existing_news": existing_summaries, "youtube_candidates": yt_posts, "x_candidates": x_tweets}
+    # Pre-filter duplicates using fuzzy title comparison (difflib)
+    filtered_yt = []
+    filtered_x = []
+
+    def clean_text(t):
+        if not t:
+            return ""
+        # Türkçe küçük harfe çevirme ve noktalama işaretlerini, fazla boşlukları temizleme
+        t = t.lower().replace('ı', 'i').replace('ö', 'o').replace('ü', 'u').replace('ş', 's').replace('ç', 'c').replace('ğ', 'g')
+        return re.sub(r'[^\w\s]', '', t).strip()
+
+    for candidate in yt_posts:
+        cand_text = clean_text(candidate.get("text", ""))
+        is_dup = False
+        for ext in existing_summaries:
+            ext_title = clean_text(ext.get("title_tr", ""))
+            # Eğer başlık adayın yazısının içinde geçiyorsa ya da benzerlik %65'ten yüksekse eliyoruz
+            if len(ext_title) > 5 and (ext_title in cand_text or cand_text in ext_title):
+                is_dup = True
+                break
+            ratio = difflib.SequenceMatcher(None, cand_text[:100], ext_title[:100]).ratio()
+            if ratio > 0.65:
+                is_dup = True
+                break
+        if not is_dup:
+            filtered_yt.append(candidate)
+        else:
+            print(f"Skipping YouTube candidate as pre-filtered duplicate: {candidate.get('text', '')[:60]}...")
+
+    for candidate in x_tweets:
+        cand_text = clean_text(candidate.get("text", ""))
+        is_dup = False
+        for ext in existing_summaries:
+            ext_title = clean_text(ext.get("title_tr", ""))
+            if len(ext_title) > 5 and (ext_title in cand_text or cand_text in ext_title):
+                is_dup = True
+                break
+            ratio = difflib.SequenceMatcher(None, cand_text[:100], ext_title[:100]).ratio()
+            if ratio > 0.65:
+                is_dup = True
+                break
+        if not is_dup:
+            filtered_x.append(candidate)
+        else:
+            print(f"Skipping X candidate as pre-filtered duplicate: {candidate.get('text', '')[:60]}...")
+
+    if not filtered_yt and not filtered_x:
+        print("All scraped candidates were filtered out as duplicates. Exiting.")
+        sys.exit(0)
+
+    payload = {"existing_news": existing_summaries, "youtube_candidates": filtered_yt, "x_candidates": filtered_x}
     news_data = call_groq(payload)
 
     if news_data and "analysis" in news_data:
@@ -497,6 +537,11 @@ def main():
         published = 0
         for item in items:
             if item.get("id") and item.get("title") and item.get("content") and item.get("category"):
+                # Double-check database ID (slug) existence to ensure no duplicate key errors
+                db_ids = [x.get("id") for x in existing_news]
+                if item.get("id") in db_ids:
+                    print(f"WARN: LLM generated an ID ({item.get('id')}) that already exists in DB. Skipping.")
+                    continue
                 if publish_news(item):
                     published += 1
             else:
