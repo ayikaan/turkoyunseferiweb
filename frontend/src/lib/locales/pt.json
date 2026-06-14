@@ -1,0 +1,413 @@
+{
+    "brand": {
+        "flag": "🇹🇷",
+        "name": "INICIATIVA DO JOGO TURCO"
+    },
+    "nav": {
+        "home": "Início",
+        "about": "Mustafa Kadir & Visão",
+        "games": "Campanhas & Conquistas",
+        "community": "Comunidade & Canais",
+        "news": "Notícias"
+    },
+    "languages": {
+        "tr": "Turco",
+        "en": "Inglês",
+        "de": "Alemão",
+        "zh": "Chinês",
+        "fr": "Francês",
+        "uk": "Ucraniano",
+        "es": "Espanhol",
+        "ja": "Japonês",
+        "ko": "Coreano",
+        "it": "Italiano",
+        "ru": "Russo",
+        "pt": "Português"
+    },
+    "home": {
+        "badge": "NOSSA BUSCA POR LOCALIZAÇÃO EM TURCO E DIREITOS DOS JOGADORES",
+        "badge_partners": "PARCERIAS E CONTATOS",
+        "badge_methodology": "NOSSA ABORDAGEM",
+        "badge_impact": "MUDANÇA SETORIAL",
+        "badge_asia": "OBSTÁCULOS GLOBAIS",
+        "title_start": "Representação Setorial dos ",
+        "title_gradient": "Jogadores Turcos",
+        "subtitle": "A Turkish Game Initiative é um projeto comunitário independente que apresenta o potencial de mercado da Turquia com dados oficiais a editores globais de jogos, com o objetivo de garantir o suporte oficial ao idioma turco nos jogos.",
+        "cta_explore": "Explorar Conquistas",
+        "cta_learn": "Como Trabalhamos",
+        "stats": {
+            "stat1_value": "15+",
+            "stat1_label": "Grandes Títulos Suportados",
+            "stat2_value": "100K+",
+            "stat2_label": "Mensagens de Suporte no Steam",
+            "stat3_value": "20+",
+            "stat3_label": "Projetos Futuros Planejados"
+        },
+        "partners_title": "Estúdios Globais e Marcas que Contatamos",
+        "partners_subtitle": "Estúdios globais que contatamos diretamente durante os processos de localização para o turco e equipes de tradução locais com as quais colaboramos.",
+        "partners": [
+            {
+                "name": "Remedy Entertainment",
+                "role": "Contato Direto & Solicitação"
+            },
+            {
+                "name": "Bethesda Softworks",
+                "role": "Resultados da Campanha de Idiomas"
+            },
+            {
+                "name": "Bandai Namco",
+                "role": "Contato com o Mercado Asiático"
+            },
+            {
+                "name": "CD Projekt RED",
+                "role": "Negociações Oficiais sobre Idioma & Dublagem"
+            },
+            {
+                "name": "Atlus / SEGA",
+                "role": "Solicitações de Localização de JRPG"
+            },
+            {
+                "name": "Deep Silver / 4A Games",
+                "role": "Acordo Pré-Lançamento"
+            },
+            {
+                "name": "IO Interactive",
+                "role": "Iniciativa para o idioma turco em 007 First Light"
+            },
+            {
+                "name": "Play Çeviri",
+                "role": "Tradução Comunitária & Suporte Técnico"
+            },
+            {
+                "name": "Netmarble",
+                "role": "Comunicação para Projetos na Ásia"
+            },
+            {
+                "name": "Lockpick",
+                "role": "Parceria Oficial de Tradução e Localização"
+            }
+        ],
+        "methodology_title": "Como Progredimos?",
+        "methodology_desc": "Nós nos organizamos de forma construtiva nas páginas de discussão do Steam e canais de mídia social para jogos recém-anunciados, estabelecendo uma ponte de comunicação profissional com os diretores de estúdio para garantir a localização oficial para o turco.",
+        "pillars": [
+            {
+                "title": "Apresentação Baseada em Dados",
+                "desc": "Informamos os estúdios sobre o tamanho do mercado turco, o número de listas de desejos e as estatísticas de vendas potenciais que a localização traria."
+            },
+            {
+                "title": "Contato Direto",
+                "desc": "Não limitamos nossas campanhas às redes sociais; entramos em contato direto com os tomadores de decisão nos estúdios de desenvolvimento."
+            },
+            {
+                "title": "Engajamento da Comunidade",
+                "desc": "Junto com nossa comunidade, construímos uma opinião pública construtiva e profissional nos fóruns do Steam e redes sociais."
+            }
+        ],
+        "impact_title": "Impacto Industrial da Iniciativa Comunitária",
+        "impact_desc": "Apresentamos dados a estúdios globais para expandir o suporte ao idioma turco na indústria de jogos digitais, garantindo que o mercado da Turquia receba o valor que merece. Nossos esforços constroem pontes de parceria entre estúdios e equipes de tradução locais, ao mesmo tempo que contribuem para o desenvolvimento de uma comunidade de jogadores conscientes.",
+        "asia_title": "Comunicação com Estúdios Asiáticos",
+        "asia_desc": "Graças aos nossos processos de comunicação construtiva com desenvolvedores baseados na Ásia, que podem ser distantes em relação ao mercado turco, contribuímos para adicionar suporte ao turco em grandes franquias como Persona.",
+        "cases_title": "Exemplos de Histórias de Sucesso",
+        "cases": [
+            {
+                "title": "Expedition 33: Diálogo Construtivo",
+                "desc": "Após contatos com os desenvolvedores, as barreiras de comunicação nos fóruns da Steam foram superadas. Após a carta construtiva de Mustafa Kadir, o estúdio aceitou os pedidos e o jogo foi lançado com suporte oficial em turco."
+            },
+            {
+                "title": "Metro 2039: Campanha Antecipada",
+                "desc": "Iniciamos uma campanha de interesse organizada e construtiva muito antes do lançamento do projeto Metro 2039. Graças a essa abordagem preventiva, a equipe editorial pré-confirmou que o suporte ao idioma turco estará disponível no lançamento."
+            }
+        ]
+    },
+    "about": {
+        "badge": "NOSSA HISTÓRIA E PROPÓSITO",
+        "title_start": "A Jornada do ",
+        "title_gradient": "Idioma Turco nos Jogos",
+        "subtitle": "Liderada por Mustafa Kadir, nossa comunidade trabalha para expandir a localização oficial para o turco, demonstrando sua importância para os desenvolvedores globais.",
+        "bio_text": "Reunidos pelo chamado de Mustafa Kadir, que cria documentários sobre o funcionamento e a história da indústria de jogos em seu canal no YouTube, os jogadores organizaram um movimento comunitário organizado para resolver a falta de suporte ao idioma turco. Este movimento transmite as solicitações dos jogadores diretamente aos estúdios de forma construtiva, contribuindo para que os jogos sejam lançados em turco.",
+        "b2b_title": "Play Çeviri & Apoio ao Setor de Tradução Local",
+        "b2b_desc": "Nosso trabalho não apenas envia solicitações aos estúdios de jogos, mas também gera volume de negócios para os estúdios de localização locais na Turquia. Enquanto a 'Play Çeviri', o ramo alternativo da nossa comunidade, coordena projetos de tradução não oficiais sob o slogan '%100 Turco' e oferece suporte técnico, também conecta estúdios que decidem lançar patches oficiais a estúdios de localização locais confiáveis, com base em parcerias comerciais.",
+        "leader_title": "SOBRE MUSTAFA KADİR",
+        "youtube_title": "ESTRATÉGIA DE CONTEÚDO DO YOUTUBE",
+        "youtube_desc": "No núcleo da autoridade que Mustafa Kadir construuiu sobre as massas reside a sua série completa de documentários com foco nos bastidores da indústria de jogos (ex: a falência da THQ, a jornada de Crysis) em vez de vídeos de gameplay genéricos, juntamente com o seu conceito altamente interativo de 'Comentários Ruins'. Esta autoridade de conteúdo é o principal catalisador do ativismo comunitário."
+    },
+    "games": {
+        "badge": "LISTA DE CAMPANHAS",
+        "title_start": "Projetos Passados, Futuros & ",
+        "title_gradient": "Ativos",
+        "subtitle": "A lista oficial de jogos onde a Turkish Game Initiative contatou diretamente os desenvolvedores, concluiu campanhas ou mantém suporte ativo.",
+        "tabs": {
+            "tab1": "Campanhas concluídas",
+            "tab2": "Projetos futuros",
+            "tab3": "Campanhas ativas"
+        },
+        "headers": {
+            "game_name": "Nome do Jogo",
+            "scale": "Escala",
+            "status_detail": "Status Atual / Detalhes",
+            "publisher_dev": "Editora / Desenvolvedor",
+            "expectation_importance": "Detalhes & Notas",
+            "lobby_status": "Status Atual"
+        },
+        "table1": [
+            {
+                "name": "Liminal Point",
+                "scale": "Independente (Indie)",
+                "status": "Patch em turco oficialmente adicionado através do esforço da comunidade."
+            },
+            {
+                "name": "007 First Light",
+                "scale": "AAA (IO Interactive)",
+                "status": "Adicionado suporte oficial em turco no dia do lançamento após petições da comunidade."
+            },
+            {
+                "name": "Control (Legendas)",
+                "scale": "AAA (Remedy)",
+                "status": "Campanhas da comunidade desempenharam um papel crucial para garantir legendas oficiais em turco."
+            },
+            {
+                "name": "Doom: The Dark Ages",
+                "scale": "AAA (Bethesda)",
+                "status": "Um dos jogos populares da Bethesda que conta com suporte oficial ao idioma turco."
+            },
+            {
+                "name": "Game of Thrones: Kingsroad",
+                "scale": "Móvel/PC (Netmarble)",
+                "status": "Garantiu que essa grande IP asiática entrasse no mercado turco em turco."
+            },
+            {
+                "name": "Clair Obscur: Expedition 33",
+                "scale": "AA/AAA",
+                "status": "Após discussões construtivas, o jogo foi lançado com suporte oficial para o idioma turco."
+            },
+            {
+                "name": "The Shadow Syndicate",
+                "scale": "Indie / AA",
+                "status": "Suporte oficial em turco adicionado após solicitações simultâneas."
+            },
+            {
+                "name": "Outros Indies (15+)",
+                "scale": "Ecossistema Indie",
+                "status": "Suporte em turco adicionado com sucesso a Agni, Choice of Life, Consance, Casual Loop, Cod Violet, Endless Legend 2, Robobeat, etc."
+            }
+        ],
+        "table2": [
+            {
+                "name": "Metro 2039",
+                "dev": "Deep Silver / 4A Games",
+                "note": "Confirmado antecipadamente no período pré-lançamento graças a uma resposta rápida."
+            },
+            {
+                "name": "The Blood of the Deadwalker",
+                "dev": "Bandai Namco",
+                "note": "O primeiro título para PC do desenvolvedor com suporte oficial ao idioma turco."
+            },
+            {
+                "name": "Atomic Heart 2 & The Cube",
+                "dev": "Mundfish",
+                "note": "Novos projetos são desenvolvidos com suporte em turco."
+            },
+            {
+                "name": "Chernobylite 2",
+                "dev": "The Farm 51",
+                "note": "Confirmação oficial dada após solicitação do público."
+            },
+            {
+                "name": "Industria 2",
+                "dev": "Bleakmill",
+                "note": "Lançamento em 2026, oficialmente confirmado na página do Steam."
+            },
+            {
+                "name": "Persona 4 Golden / Revival",
+                "dev": "Atlus / SEGA",
+                "note": "Um passo importante para a expansão do suporte em turco em extensos títulos de JRPG."
+            },
+            {
+                "name": "Dark West",
+                "dev": "ARPG",
+                "note": "Suporte assegurado por esforço comunitário e recomendação de estúdio de tradução local."
+            },
+            {
+                "name": "Heroes of Might and Magic (Eer)",
+                "dev": "Ubisoft",
+                "note": "O novo título da série Eer estará em turco."
+            }
+        ],
+        "table3": [
+            {
+                "name": "Grand Theft Auto 6 (GTA VI)",
+                "dev": "Rockstar Games",
+                "lobi": "A campanha continua. A comunidade envia petições construtivas para o suporte em turco."
+            },
+            {
+                "name": "The Witcher 4 (Polaris)",
+                "dev": "CD Projekt RED",
+                "lobi": "Solicitações de legendas e dublagem em turco enviadas ao estúdio."
+            },
+            {
+                "name": "Max Payne 1 & 2 Remake",
+                "dev": "Remedy Entertainment",
+                "lobi": "Contato direto estabelecido com o estúdio para compartilhar detalhes da solicitação de turco."
+            },
+            {
+                "name": "Resident Evil & 30 Sword",
+                "dev": "Capcom",
+                "lobi": "Grande demanda transmitida ao estúdio. Processos de localização sob acompanhamento."
+            },
+            {
+                "name": "Path of Exile 2",
+                "dev": "Grinding Gear Games",
+                "lobi": "Conversas construtivas sobre viabilidade e custos de localização com o estúdio."
+            },
+            {
+                "name": "Fable (Reboot)",
+                "dev": "Playground Games (Xbox)",
+                "lobi": "Campanhas de listas de desejos e petições continuam para o lançamento."
+            },
+            {
+                "name": "Death Stranding 2: On the Beach",
+                "dev": "Kojima Productions",
+                "lobi": "Solicitações enviadas para adicionar localização em turco à versão de PC."
+            },
+            {
+                "name": "Outros Objetivos AAA Ativos",
+                "dev": "Vários Estúdios",
+                "lobi": "Petições ativas para Halo CE, Forza Horizon 6, Hollow Knight: Silksong, Judas, Phantom Blade Zero, etc."
+            }
+        ]
+    },
+    "community": {
+        "badge": "CONTAS DA COMUNIDADE E CONTATO",
+        "title_start": "Mídias Sociais & ",
+        "title_gradient": "Canais de Comunicação",
+        "subtitle": "O sucesso da Turkish Game Initiative baseia-se numa estratégia multiplataforma e redes comunitárias integradas.",
+        "discord_title": "Sala de Coordenação de Campanhas",
+        "discord_desc": "Nós nos reunimos no nosso servidor Discord para organizar campanhas, iniciar discussões no Steam e coordenar e-mails em massa.",
+        "discord_cta": "Junte-se à Sala de Campanhas",
+        "tournament_title": "Atualizações & Transmissões",
+        "tournament_desc": "Siga a correspondência atual com os estúdios e o estado das localizações no canal do YouTube de Mustafa Kadir e anúncios da comunidade.",
+        "tournament_cta": "Mustafa Kadir YouTube",
+        "table_headers": {
+            "type": "Plataforma / Tipo de Ferramenta",
+            "handle": "Conta / Nome de Usuário",
+            "stats": "Estatísticas Atuais",
+            "link": "Link"
+        },
+        "visit_cta": "Visitar",
+        "inventory": [
+            {
+                "type": "YouTube (Community)",
+                "handle": "Mustafa Kadir Posts",
+                "stats": "Latest updates and instant news",
+                "url": "youtube.com/@MstafaKadir/posts"
+            },
+            {
+                "type": "X (Game Initiative Community)",
+                "handle": "Turkish Game Initiative",
+                "stats": "Community posts and collaboration",
+                "url": "x.com/i/communities/1888733402792128619"
+            },
+            {
+                "type": "YouTube (Principal)",
+                "handle": "Mustafa Kadir (@MstafaKadir)",
+                "stats": "~57.400 Inscritos, 770+ Vídeos",
+                "url": "youtube.com/MstafaKadir"
+            },
+            {
+                "type": "Grupo da Comunidade Steam",
+                "handle": "Mustafa Kadir TÜRKÇEOYUN",
+                "stats": "1.099 Membros, ~279 Online",
+                "url": "steamcommunity.com/groups/mstafakadir"
+            },
+            {
+                "type": "Perfil Steam",
+                "handle": "Mustafa Kadir",
+                "stats": "Nível 45, 294 Amigos",
+                "url": "steamcommunity.com/id/mustafakadir"
+            },
+            {
+                "type": "Discord (Principal)",
+                "handle": "Mustafa Kadir Official",
+                "stats": "Coordenação comunitária e planos de ação",
+                "url": "discord.gg/CVdrTPUYMQ"
+            },
+            {
+                "type": "Discord (Play Çeviri)",
+                "handle": "Play Çeviri",
+                "stats": "%100 Turco, Suporte Técnico",
+                "url": "discord.com/servers/play-ceviri-126103152098399360"
+            },
+            {
+                "type": "X / Twitter",
+                "handle": "@MstafaKadir",
+                "stats": "Anúncios da comunidade e comunicação",
+                "url": "twitter.com/MstafaKadir"
+            },
+            {
+                "type": "Instagram",
+                "handle": "@mustafakadirce",
+                "stats": "Contato pessoal",
+                "url": "instagram.com/mustafakadirce"
+            },
+            {
+                "type": "Twitch",
+                "handle": "MstafaKadir",
+                "stats": "Transmissões ao vivo",
+                "url": "twitch.tv/MstafaKadir"
+            },
+            {
+                "type": "Gmail / E-mail",
+                "handle": "mustafa@mkadir.com",
+                "stats": "Consultas Oficiais & B2B",
+                "url": "mailto:mustafa@mkadir.com"
+            }
+        ]
+    },
+    "alerts": {
+        "join_soon": "Visite nossa lista de jogos para se juntar aos nossos servidores de coordenação de campanhas."
+    },
+    "footer": {
+        "desc": "A Turkish Game Initiative é um projeto comunitário independente que apresenta o potencial do mercado da Turquia com dados oficiais aos editores de jogos globais, visando generalizar o suporte ao idioma turco.",
+        "links_title": "Links & Contato",
+        "link_steam": "Grupo Steam",
+        "link_discord": "Play Çeviri Discord",
+        "link_b2b": "Contato B2B / Consultas",
+        "support_title": "Apoie a Iniciativa",
+        "support_desc": "Para nos ajudar a sustentar a Iniciativa do Jogo Turco e contribuir para as nossas campanhas oficiais de idiomas, você pode apoiar Mustafa Kadir.",
+        "support_cta": "Apoiar Mustafa Kadir",
+        "copyright": "Iniciativa do Jogo Turco. Todos os direitos reservados.",
+        "designed_by": "Desenhado & Desenvolvido por",
+        "creator_support_title": "Apoiar o Desenvolvedor",
+        "creator_support_desc": "Se você deseja apoiar o meu trabalho de design e programação deste site, ou deixar um pequeno agradecimento, pode me pagar um café.",
+        "creator_support_cta": "Pagar um café para ayiikan"
+    },
+    "news": {
+        "badge": "NOTÍCIAS E ANÚNCIOS",
+        "title_start": "Últimas atualizações da ",
+        "title_gradient": "Iniciativa",
+        "subtitle": "Nossos esforços de localização em turco, consultas diretas enviadas aos estúdios globais e anúncios da comunidade.",
+        "items": [
+            {
+                "date": "12 de junho de 2026",
+                "category": "Lobby e Negociações",
+                "title": "Discussões de Witcher 4 com CD Projekt RED",
+                "content": "Seguindo as fortes demandas da comunidade por dublagem em turco no Witcher 4, uma carta de proposta formal foi entregue diretamente aos gerentes de localização na Polônia. As discussões avançam de forma positiva.",
+                "cta": "Assistir no YouTube"
+            },
+            {
+                "date": "10 de junho de 2026",
+                "category": "Sucesso Oficial",
+                "title": "Expedition 33 lançado com suporte oficial em turco!",
+                "content": "Clair Obscur: Expedition 33, cujo suporte oficial em turco foi confirmado após as cartas construtivas da nossa comunidade, foi oficialmente lançado com suporte completo em turco.",
+                "cta": "Detalhes do vídeo"
+            },
+            {
+                "date": "8 de junho de 2026",
+                "category": "Campanha",
+                "title": "Campanha de idioma turco para GTA VI lançada",
+                "content": "Um plano de ação coordenado foi lançado nos fóruns de discussão da Steam e plataformas de e-mail para o altamente antecipado GTA VI da Rockstar Games. O engajamento atingiu níveis recordes.",
+                "cta": "Central de Campanha"
+            }
+        ]
+    }
+}

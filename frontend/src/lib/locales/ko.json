@@ -1,0 +1,413 @@
+{
+    "brand": {
+        "flag": "🇹🇷",
+        "name": "터키 게임 이니셔티브"
+    },
+    "nav": {
+        "home": "홈",
+        "about": "Mustafa Kadir & 비전",
+        "games": "캠페인 & 성과",
+        "community": "커뮤니티 & 채널",
+        "news": "뉴스"
+    },
+    "languages": {
+        "tr": "터키어",
+        "en": "영어",
+        "de": "독일어",
+        "zh": "중국어",
+        "fr": "프랑스어",
+        "uk": "우크라이나어",
+        "es": "스페인어",
+        "ja": "일본어",
+        "ko": "한국어",
+        "it": "이탈리아어",
+        "ru": "러시아어",
+        "pt": "포르투갈어"
+    },
+    "home": {
+        "badge": "터키어 지원 캠페인 및 플레이어의 권리",
+        "badge_partners": "파트너십 및 연락처",
+        "badge_methodology": "접근 방식",
+        "badge_impact": "업계의 변화",
+        "badge_asia": "글로벌 장애물",
+        "title_start": "터키 게이머들의 ",
+        "title_gradient": "업계 내 권익 대변",
+        "subtitle": "터키 게임 이니셔티브(Turkish Game Initiative)는 공식 데이터를 통해 글로벌 게임 퍼블리셔들에게 터키 시장의 잠재력을 제시하고, 게임 내 공식 터키어 지원을 확보하기 위해 노력하는 독립적인 커뮤니티 프로젝트입니다.",
+        "cta_explore": "성과 목록 보기",
+        "cta_learn": "활동 방식",
+        "stats": {
+            "stat1_value": "15+",
+            "stat1_label": "지원된 주요 대작",
+            "stat2_value": "100K+",
+            "stat2_label": "Steam 지원 메시지",
+            "stat3_value": "20+",
+            "stat3_label": "계획된 미래 프로젝트"
+        },
+        "partners_title": "연락을 취한 글로벌 스튜디오 및 브랜드",
+        "partners_subtitle": "터키어 로컬라이징 과정에서 당사가 직접 연락한 글로벌 스튜디오와 협력 중인 현지 번역 팀들입니다.",
+        "partners": [
+            {
+                "name": "Remedy Entertainment",
+                "role": "직접 연락 및 요청"
+            },
+            {
+                "name": "Bethesda Softworks",
+                "role": "언어 캠페인 결과"
+            },
+            {
+                "name": "Bandai Namco",
+                "role": "아시아 시장 연락망"
+            },
+            {
+                "name": "CD Projekt RED",
+                "role": "공식 언어 및 더빙 협상"
+            },
+            {
+                "name": "Atlus / SEGA",
+                "role": "JRPG 로컬라이징 요청"
+            },
+            {
+                "name": "Deep Silver / 4A Games",
+                "role": "출시 전 계약 체결"
+            },
+            {
+                "name": "IO Interactive",
+                "role": "007 First Light 터키어 프로젝트"
+            },
+            {
+                "name": "Play Çeviri",
+                "role": "커뮤니티 번역 및 기술 지원"
+            },
+            {
+                "name": "Netmarble",
+                "role": "아시아 프로젝트용 연락망"
+            },
+            {
+                "name": "Lockpick",
+                "role": "공식 번역 및 현지화 협력"
+            }
+        ],
+        "methodology_title": "어떻게 진행하나요?",
+        "methodology_desc": "새로 발표된 게임의 Steam 토론 페이지와 SNS 채널에서 조직적으로 움직여 개발 스튜디오에 터키어 지원 요청을 건설적인 언어로 전달합니다. 이를 통해 스튜디오 관리자들과 전문적인 소통 창구를 구축하여 공식 터키어 지원이 추가되도록 돕습니다.",
+        "pillars": [
+            {
+                "title": "데이터 기반 프레젠테이션",
+                "desc": "스튜디오에 터키 시장 규모, 위시리스트 수량 및 로컬라이징 시 예상되는 판매 통계 보고서를 제공합니다."
+            },
+            {
+                "title": "직접 접촉",
+                "desc": "캠페인을 단순히 소셜 미디어에만 머무르게 하지 않고, 게임 개발 스튜디오의 의사 결정권자들에게 직접 연락합니다."
+            },
+            {
+                "title": "커뮤니티 참여",
+                "desc": "커뮤니티 회원들과 함께 Steam 토론 게시판과 SNS 상에서 건설적이고 전문적인 여론을 형성합니다."
+            }
+        ],
+        "impact_title": "커뮤니티 이니셔티브의 업계 영향",
+        "impact_desc": "글로벌 디지털 게임 산업에서 터키어 지원의 확산과 터키 시장이 마땅히 받아야 할 가치를 인정받을 수 있도록 데이터를 바탕으로 활동합니다. 당사의 노력은 스튜디오와 현지 번역 팀 간의 파트너십 기반을 마련하고, 게이머들 사이에서 의식 있는 소비자 의식을 고취하는 데 기여하고 있습니다.",
+        "asia_title": "아시아 지역 스튜디오와의 소통",
+        "asia_desc": "터키 시장에 대해 다소 거리감이 있는 아시아 개발사들과의 건설적인 소통 프로세스를 통해, '페르소나'와 같은 유명 시리즈에 터키어 지원이 추가되거나 해당 계획에 반영되도록 공헌했습니다.",
+        "cases_title": "대표적인 성공 사례",
+        "cases": [
+            {
+                "title": "Expedition 33: 건설적인 대화",
+                "desc": "개발사 소통 결과 Steam 토론 스레드 장벽을 해결했습니다. Mustafa Kadir의 건설적인 분석서 전달 이후 제작사가 수용하여 공식 터키어 지원으로 정식 출시되었습니다."
+            },
+            {
+                "title": "Metro 2039: 조기 행동",
+                "desc": "출시까지 오랜 기간이 남은 Metro 2039 프로젝트를 위해 조기에 조직적인 캠페인을 시작했습니다. 이러한 선제적 접근 덕분에 퍼블리셔는 출시 시점에 터키어 지원이 포함될 것임을 사전에 확정해 주었습니다."
+            }
+        ]
+    },
+    "about": {
+        "badge": "우리의 발자취와 목적",
+        "title_start": "게임 속 ",
+        "title_gradient": "터키어 지원의 역사",
+        "subtitle": "Mustafa Kadir의 주도 아래 모인 커뮤니티는 글로벌 게임 개발사들에게 터키어의 중요성을 증명하며 공식 로컬라이징의 확산을 위해 노력하고 있습니다.",
+        "bio_text": "YouTube 채널에서 게임 산업의 구조와 역사에 대한 다큐멘터리를 제작하는 Mustafa Kadir의 제안으로 모인 게이머들은 터키어 지원 결여 문제를 해결하기 위해 조직적인 커뮤니티 운동을 시작했습니다. 이 운동은 유저들의 요구사항을 건설적인 언어로 스튜디오에 직접 전달하여 게임이 터키어로 출시되도록 기여하고 있습니다.",
+        "b2b_title": "Play Çeviri 및 현지 번역 업계 지원",
+        "b2b_desc": "당사의 활동은 단순한 요청 전달에 그치지 않고 터키 현지 로컬라이징 스튜디오에 일거리를 창출해 줍니다. 커뮤니티의 별도 지부인 'Play Çeviri'가 '100% 터키어' 슬로건 하에 비공식 번역 프로젝트를 조율하고 기술 지원을 제공하는 한편, 공식 패치를 결정한 스튜디오에 신뢰할 수 있는 현지 번역 스튜디오를 연결하여 파트너십을 맺을 수 있도록 지원합니다.",
+        "leader_title": "MUSTAFA KADİR 소개",
+        "youtube_title": "YOUTUBE 콘텐츠 전략",
+        "youtube_desc": "Mustafa Kadir가 대중들로부터 신뢰를 쌓은 비결은 단순한 게임 플레이 영상이 아닌, 게임 산업의 이면을 다루는 포괄적인 다큐멘터리 시리즈(예: THQ의 파산 비화, Crysis의 연대기)와 큰 반향을 이끌어낸 'Bad Comments' 코너에 있습니다. 이러한 콘텐츠 파워가 커뮤니티 운동을 이끄는 주요 원동력입니다."
+    },
+    "games": {
+        "badge": "캠페인 목록",
+        "title_start": "과거, 미래, 그리고 ",
+        "title_gradient": "진행 중인 프로젝트",
+        "subtitle": "터키 게임 이니셔티브가 직접 연락을 취했거나 캠페인을 완료했거나 현재도 지원 중인 게임들의 공식 현황판입니다.",
+        "tabs": {
+            "tab1": "완료된 캠페인",
+            "tab2": "향후 프로젝트",
+            "tab3": "활성 캠페인"
+        },
+        "headers": {
+            "game_name": "게임 이름",
+            "scale": "규모",
+            "status_detail": "현재 상태 / 상세 정보",
+            "publisher_dev": "퍼블리셔 / 개발사",
+            "expectation_importance": "상세 내용 및 비고",
+            "lobby_status": "현재 상태"
+        },
+        "table1": [
+            {
+                "name": "Liminal Point",
+                "scale": "인디",
+                "status": "커뮤니티의 지원으로 공식 터키어 패치가 정식 추가되었습니다."
+            },
+            {
+                "name": "007 First Light",
+                "scale": "AAA (IO Interactive)",
+                "status": "커뮤니티의 요구에 맞춰 출시 당일 공식 터키어 지원이 완료되었습니다."
+            },
+            {
+                "name": "Control (자막)",
+                "scale": "AAA (Remedy)",
+                "status": "공식 터키어 자막 확보 과정에서 커뮤니티 캠페인이 큰 역할을 했습니다."
+            },
+            {
+                "name": "Doom: The Dark Ages",
+                "scale": "AAA (Bethesda)",
+                "status": "공식 터키어 지원이 제공되는 Bethesda의 인기 타이틀 중 하나입니다."
+            },
+            {
+                "name": "Game of Thrones: Kingsroad",
+                "scale": "모바일/PC (Netmarble)",
+                "status": "아시아 기반 대형 IP의 터키 진출 시 터키어 지원을 확보했습니다."
+            },
+            {
+                "name": "Clair Obscur: Expedition 33",
+                "scale": "AA/AAA",
+                "status": "건설적인 논의 끝에 공식 터키어 지원이 포함되어 정식 출시되었습니다."
+            },
+            {
+                "name": "The Shadow Syndicate",
+                "scale": "인디 / AA",
+                "status": "동시다발적 리퀘스트 결과 공식 터키어 패치가 추가되었습니다."
+            },
+            {
+                "name": "기타 인디 게임 (15+)",
+                "scale": "인디 생태계",
+                "status": "Agni, Choice of Life, Consance, Casual Loop, Cod Violet, Endless Legend 2, Robobeat 등 다수의 인디 게임에 터키어가 추가되었습니다."
+            }
+        ],
+        "table2": [
+            {
+                "name": "Metro 2039",
+                "dev": "Deep Silver / 4A Games",
+                "note": "출시 전 조기 대응 캠페인을 통해 지원이 확정되었습니다."
+            },
+            {
+                "name": "The Blood of the Deadwalker",
+                "dev": "Bandai Namco",
+                "note": "개발사가 PC 플랫폼에서 출시하는 최초의 공식 터키어 지원 게임입니다."
+            },
+            {
+                "name": "Atomic Heart 2 & The Cube",
+                "dev": "Mundfish",
+                "note": "신규 프로젝트들이 터키어 지원을 전제로 개발 중입니다."
+            },
+            {
+                "name": "Chernobylite 2",
+                "dev": "The Farm 51",
+                "note": "유저들의 적극적인 요청 후 공식 확정되었습니다."
+            },
+            {
+                "name": "Industria 2",
+                "dev": "Bleakmill",
+                "note": "2026년 출시 예정. Steam 상점 페이지 내 터키어 지원 확정."
+            },
+            {
+                "name": "Persona 4 Golden / Revival",
+                "dev": "Atlus / SEGA",
+                "note": "대작 JRPG 타이틀의 터키어 지원 확산에 있어 중요한 이정표입니다."
+            },
+            {
+                "name": "Dark West",
+                "dev": "ARPG",
+                "note": "커뮤니티 회원들의 노력 및 현지 번역 스튜디오 추천을 통해 지원을 확보했습니다."
+            },
+            {
+                "name": "Heroes of Might and Magic (Eer)",
+                "dev": "Ubisoft",
+                "note": "Eer 시리즈의 신작이 공식 터키어를 지원할 예정입니다."
+            }
+        ],
+        "table3": [
+            {
+                "name": "Grand Theft Auto 6 (GTA VI)",
+                "dev": "Rockstar Games",
+                "lobi": "캠페인이 계속 진행 중입니다. 커뮤니티를 통해 터키어 지원을 요청하는 건설적인 메시지가 전달되고 있습니다."
+            },
+            {
+                "name": "The Witcher 4 (Polaris)",
+                "dev": "CD Projekt RED",
+                "lobi": "터키어 자막 및 음성 더빙 요청이 스튜디오에 전달되었습니다."
+            },
+            {
+                "name": "Max Payne 1 & 2 Remake",
+                "dev": "Remedy Entertainment",
+                "lobi": "개발 스튜디오와 직접 소통하며 요청 세부 사항을 조율 중입니다."
+            },
+            {
+                "name": "Resident Evil & 30 Sword",
+                "dev": "Capcom",
+                "lobi": "유저들의 강력한 수요가 전달되었습니다. 로컬라이징 프로세스를 모니터링하고 있습니다."
+            },
+            {
+                "name": "Path of Exile 2",
+                "dev": "Grinding Gear Games",
+                "lobi": "로컬라이징 타당성 및 비용에 대해 스튜디오와 건설적인 논의를 가졌습니다."
+            },
+            {
+                "name": "Fable (Reboot)",
+                "dev": "Playground Games (Xbox)",
+                "lobi": "출시 시점의 지원을 겨냥하여 위시리스트 및 요청 캠페인을 지속하고 있습니다."
+            },
+            {
+                "name": "Death Stranding 2: On the Beach",
+                "dev": "Kojima Productions",
+                "lobi": "PC 버전 출시 시 터키어 지원을 요청하는 메시지를 전달하고 있습니다."
+            },
+            {
+                "name": "기타 진행 중인 AAA 타이틀",
+                "dev": "다양한 스튜디오",
+                "lobi": "Halo CE, Forza Horizon 6, Hollow Knight: Silksong, Judas, Phantom Blade Zero 등의 요청 활동을 유지하고 있습니다."
+            }
+        ]
+    },
+    "community": {
+        "badge": "커뮤니티 계정 및 연락처",
+        "title_start": "소셜 미디어 및 ",
+        "title_gradient": "소통 채널",
+        "subtitle": "터키 게임 이니셔티브의 성공은 다중 플랫폼 전략과 유기적으로 통합된 커뮤니티 네트워크를 기반으로 합니다.",
+        "discord_title": "캠페인 조정 본부",
+        "discord_desc": "Discord 서버에 모여 캠페인을 기획하고, 이메일 발송 총공을 준비하며, Steam 토론을 조직합니다.",
+        "discord_cta": "캠페인 본부 참여하기",
+        "tournament_title": "공지 및 방송",
+        "tournament_desc": "Mustafa Kadir YouTube 채널과 커뮤니티 공지를 통해 최신 개발사 서신 조율 현황과 로컬라이징 소식을 확인하세요.",
+        "tournament_cta": "Mustafa Kadir YouTube",
+        "table_headers": {
+            "type": "플랫폼 / 도구 유형",
+            "handle": "계정 / 사용자 이름",
+            "stats": "현재 활동 수치",
+            "link": "링크"
+        },
+        "visit_cta": "방문하기",
+        "inventory": [
+            {
+                "type": "YouTube (Community)",
+                "handle": "Mustafa Kadir Posts",
+                "stats": "Latest updates and instant news",
+                "url": "youtube.com/@MstafaKadir/posts"
+            },
+            {
+                "type": "X (Game Initiative Community)",
+                "handle": "Turkish Game Initiative",
+                "stats": "Community posts and collaboration",
+                "url": "x.com/i/communities/1888733402792128619"
+            },
+            {
+                "type": "YouTube (메인)",
+                "handle": "Mustafa Kadir (@MstafaKadir)",
+                "stats": "구독자 약 5.74만 명, 동영상 770개 이상",
+                "url": "youtube.com/MstafaKadir"
+            },
+            {
+                "type": "Steam 커뮤니티 그룹",
+                "handle": "Mustafa Kadir TÜRKÇEOYUN",
+                "stats": "멤버 1,099명, 동접 약 279명",
+                "url": "steamcommunity.com/groups/mstafakadir"
+            },
+            {
+                "type": "Steam 프로필",
+                "handle": "Mustafa Kadir",
+                "stats": "레벨 45, 친구 294명",
+                "url": "steamcommunity.com/id/mustafakadir"
+            },
+            {
+                "type": "Discord (메인)",
+                "handle": "Mustafa Kadir Official",
+                "stats": "커뮤니티 공조 및 행동 계획 수립",
+                "url": "discord.gg/CVdrTPUYMQ"
+            },
+            {
+                "type": "Discord (Play Çeviri)",
+                "handle": "Play Çeviri",
+                "stats": "100% 터키어 지원, 기술 지원",
+                "url": "discord.com/servers/play-ceviri-126103152098399360"
+            },
+            {
+                "type": "X / Twitter",
+                "handle": "@MstafaKadir",
+                "stats": "커뮤니티 소식 공지 및 소통",
+                "url": "twitter.com/MstafaKadir"
+            },
+            {
+                "type": "Instagram",
+                "handle": "@mustafakadirce",
+                "stats": "개인 계정",
+                "url": "instagram.com/mustafakadirce"
+            },
+            {
+                "type": "Twitch",
+                "handle": "MstafaKadir",
+                "stats": "라이브 방송",
+                "url": "twitch.tv/MstafaKadir"
+            },
+            {
+                "type": "Gmail / 이메일",
+                "handle": "mustafa@mkadir.com",
+                "stats": "공식 비즈니스 협조 및 B2B",
+                "url": "mailto:mustafa@mkadir.com"
+            }
+        ]
+    },
+    "alerts": {
+        "join_soon": "캠페인 조정 서버에 참여하려면 당사 게임 목록 페이지를 방문해 주세요."
+    },
+    "footer": {
+        "desc": "터키 게임 이니셔티브는 공식 데이터를 기반으로 글로벌 게임 퍼블리셔들에게 터키 시장의 잠재력을 알리고 터키어 지원 확산을 목표로 하는 독립 커뮤니티 프로젝트입니다.",
+        "links_title": "링크 & 연락처",
+        "link_steam": "Steam 그룹",
+        "link_discord": "Play Çeviri Discord",
+        "link_b2b": "B2B 연락 / 문의",
+        "support_title": "이니셔티브 후원하기",
+        "support_desc": "터키어 게임 이니셔티브를 유지하고 공식 언어 캠페인에 기여하기 위해 Mustafa Kadir를 후원할 수 있습니다.",
+        "support_cta": "Mustafa Kadir 후원하기",
+        "copyright": "터키 게임 이니셔티브. 모든 권리 보유.",
+        "designed_by": "디자인 및 개발:",
+        "creator_support_title": "개발자 후원하기",
+        "creator_support_desc": "이 웹사이트의 디자인 및 코딩 작업에 대한 후원을 원하시거나 작은 감사를 표하고 싶다면 커피 한 잔을 후원하실 수 있습니다.",
+        "creator_support_cta": "ayiikan에게 커피 한 잔 후원하기"
+    },
+    "news": {
+        "badge": "뉴스 및 공지사항",
+        "title_start": "이니셔티브 ",
+        "title_gradient": "최신 소식",
+        "subtitle": "터키어 지원 노력, 글로벌 스튜디오 직접 제안 및 커뮤니티 공지사항을 전해드립니다.",
+        "items": [
+            {
+                "date": "2026년 6월 12일",
+                "category": "로비 및 협상",
+                "title": "CD Projekt RED와 Witcher 4 관련 협상 진행",
+                "content": "Witcher 4의 터키어 더빙에 대한 커뮤니티의 강력한 요청에 따라 폴란드 현지화 담당자들에게 공식 제안서가 직접 전달되었습니다. 긍정적인 방향으로 논의가 진행 중입니다.",
+                "cta": "YouTube에서 시청"
+            },
+            {
+                "date": "2026년 6월 10일",
+                "category": "공식 성공",
+                "title": "Expedition 33 공식 터키어 지원 탑재하여 정식 출시!",
+                "content": "우리 커뮤니티의 건설적인 조율 편지 이후 공식 터키어 지원이 확정되었던 Clair Obscur: Expedition 33이 정식 출시와 함께 완전한 터키어 옵션을 제공하며 발매되었습니다.",
+                "cta": "상세 영상 보기"
+            },
+            {
+                "date": "2026년 6월 8일",
+                "category": "캠페인",
+                "title": "GTA VI 터키어 지원 캠페인 개시",
+                "content": "Rockstar Games의 기대작 GTA VI를 목표로 Steam 커뮤니티 토론 포럼에서 메일 발송 및 스레드 작성을 조율한 캠페인이 시작되었으며, 역대 최고 참여율을 기록 중입니다.",
+                "cta": "로비 센터"
+            }
+        ]
+    }
+}

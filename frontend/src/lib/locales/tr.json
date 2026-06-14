@@ -1,0 +1,413 @@
+{
+    "brand": {
+        "flag": "🇹🇷",
+        "name": "TÜRKÇE OYUN SEFERİ"
+    },
+    "nav": {
+        "home": "Ana Sayfa",
+        "about": "Mustafa Kadir & Vizyon",
+        "games": "Kampanyalar & Başarılar",
+        "community": "Topluluk & İletişim Kanalları",
+        "news": "Haberler & Süreç"
+    },
+    "languages": {
+        "tr": "Türkçe",
+        "en": "İngilizce",
+        "de": "Almanca",
+        "zh": "Çince",
+        "fr": "Fransızca",
+        "uk": "Ukraynaca",
+        "es": "İspanyolca",
+        "ja": "Japonca",
+        "ko": "Korece",
+        "it": "İtalyanca",
+        "ru": "Rusça",
+        "pt": "Portekizce"
+    },
+    "home": {
+        "badge": "TÜRKÇE OYUN ARAYIŞIMIZ VE OYUNCU HAKLARIMIZ",
+        "badge_partners": "İŞ BİRLİKLERİ & TEMASLAR",
+        "badge_methodology": "YAKLAŞIMIMIZ",
+        "badge_impact": "SEKTÖREL DEĞİŞİM",
+        "badge_asia": "KÜRESEL ENGELLER",
+        "title_start": "Türk Oyuncuların ",
+        "title_gradient": "Sektörel Temsili",
+        "subtitle": "Türkçe Oyun Seferi, küresel dijital oyun yayıncılarına Türkiye pazar potansiyelini resmi verilerle sunan, oyunlara resmi Türkçe dil desteği kazandırmak için çalışan bağımsız bir topluluk girişimidir.",
+        "cta_explore": "Başarı Tablolarını İncele",
+        "cta_learn": "Çalışma Yöntemimiz",
+        "stats": {
+            "stat1_value": "15+",
+            "stat1_label": "Desteklenen Büyük Yapım",
+            "stat2_value": "100K+",
+            "stat2_label": "Steam Destek Mesajı",
+            "stat3_value": "20+",
+            "stat3_label": "Planlanan Gelecek Proje"
+        },
+        "partners_title": "İletişim Kurduğumuz Global Stüdyolar ve Markalar",
+        "partners_subtitle": "Türkçe yerelleştirme süreçlerinde doğrudan temas kurduğumuz global stüdyolar ve iş birliği yürüttüğümüz yerel çeviri ekipleri.",
+        "partners": [
+            {
+                "name": "Remedy Entertainment",
+                "role": "Doğrudan İletişim & Talep"
+            },
+            {
+                "name": "Bethesda Softworks",
+                "role": "Dil Girişimi Sonuçları"
+            },
+            {
+                "name": "Bandai Namco",
+                "role": "Asya Pazarı İletişimi"
+            },
+            {
+                "name": "CD Projekt RED",
+                "role": "Resmi Dil & Seslendirme Görüşmeleri"
+            },
+            {
+                "name": "Atlus / SEGA",
+                "role": "JRPG Yerelleştirme Talepleri"
+            },
+            {
+                "name": "Deep Silver / 4A Games",
+                "role": "Lansman Öncesi Anlaşma"
+            },
+            {
+                "name": "IO Interactive",
+                "role": "007 First Light Türkçe Girişimi"
+            },
+            {
+                "name": "Play Çeviri",
+                "role": "Topluluk Çeviri & Teknik Destek"
+            },
+            {
+                "name": "Netmarble",
+                "role": "Asya Projeleri İletişimi"
+            },
+            {
+                "name": "Lockpick",
+                "role": "Resmi Çeviri & Yerelleştirme Ortaklığı"
+            }
+        ],
+        "methodology_title": "Nasıl Yol Alıyoruz?",
+        "methodology_desc": "Yeni duyurulan oyunların Steam tartışma sayfalarında ve sosyal medya kanallarında organize olarak Türkçe dil desteği taleplerimizi yapıcı bir dille geliştirici stüdyolara iletiyoruz. Bu sayede stüdyo yöneticileriyle profesyonel bir iletişim köprüsü kurarak resmi Türkçe seçeneklerinin eklenmesini sağlıyoruz.",
+        "pillars": [
+            {
+                "title": "Veri Odaklı Sunum",
+                "desc": "Stüdyolara Türkiye pazar büyüklüğü, istek listesi adetleri ve yerelleştirmenin getireceği potansiyel satış istatistiklerini raporluyoruz."
+            },
+            {
+                "title": "Doğrudan İletişim",
+                "desc": "Girişimlerimizi yalnızca sosyal medyada bırakmıyor, oyun stüdyolarının karar verici pozisyonlarındaki yöneticileriyle doğrudan temasa geçiyoruz."
+            },
+            {
+                "title": "Topluluk Katılımı",
+                "desc": "Topluluğumuzla birlikte Steam tartışma forumlarında ve sosyal mecralarda yapıcı, profesyonel bir kamuoyu oluşturuyoruz."
+            }
+        ],
+        "impact_title": "Topluluk Girişiminin Sektörel Yansımaları",
+        "impact_desc": "Küresel dijital oyun endüstrisinde Türkçe dil desteğinin yaygınlaşması ve Türkiye pazarının hak ettiği değeri görebilmesi adına çalışmalarimizi verilerle stüdyolara sunuyoruz. Girişimlerimiz, stüdyolarla yerel çeviri ekipleri arasında iş ortaklığı zeminleri oluştururken oyuncular arasında da bilinçli bir tüketici topluluğunun gelişmesine katkı sağlıyor.",
+        "asia_title": "Asya Merkezli Stüdyolarla İletişim",
+        "asia_desc": "Türkiye pazarına karşı mesafeli olabilen Asya merkezli geliştiricilerle kurduğumuz yapıcı iletişim süreçleri sayesinde, Persona gibi köklü serilerin Türkçe dil seçeneğiyle çıkmasına veya bu planlara dahil edilmesine katkı sağladık.",
+        "cases_title": "Örnek Başarı Hikayeleri",
+        "cases": [
+            {
+                "title": "Expedition 33: Yapıcı Diyalog",
+                "desc": "Geliştirici ekiple kurulan temaslar sonucunda Steam forumlarındaki iletişim engelleri aşıldı. Mustafa Kadir'in yapıcı mektubu sonrası stüdyo talepleri kabul etti ve oyun resmi Türkçe dil desteğiyle çıkış yaptı."
+            },
+            {
+                "title": "Metro 2039: Erken Dönem Çalışmaları",
+                "desc": "Lansmanına uzun süre olan Metro 2039 projesi için erken dönemde organize bir ilgi çalışması başlattık. Bu yapıcı yaklaşım sayesinde yayıncı ekip, Türkçe dil desteğinin oyunun çıkışında yer alacağını önceden teyit etti."
+            }
+        ]
+    },
+    "about": {
+        "badge": "HİKAYEMİZ VE AMACIMIZ",
+        "title_start": "Oyunlarda Türkçe Dilinin ",
+        "title_gradient": "Serüveni",
+        "subtitle": "Mustafa Kadir öncülüğünde bir araya gelen topluluğumuz, küresel oyun geliştiricilerine Türkçe dil seçeneğinin önemini göstererek resmi yerelleştirme süreçlerinin yaygınlaşması için çalışmaktadır.",
+        "bio_text": "YouTube kanalında oyun sektörünün işleyişine ve tarihine yönelik belgeseller hazırlayan Mustafa Kadir'in çağrısıyla bir araya gelen oyuncular, Türkçe dil desteği eksikliğini çözmek üzere organize bir topluluk hareketi oluşturmuştur. Bu hareket, oyuncuların taleplerini doğrudan stüdyolara yapıcı bir dille ileterek oyunların Türkçe yayınlanmasına katkı sağlamaktadır.",
+        "b2b_title": "Play Çeviri ve Yerel Çeviri Sektörüne Destek",
+        "b2b_desc": "Çalışmalarımız yalnızca oyun stüdyolarına talep iletmekle kalmayıp, Türkiye'deki yerel lokalizasyon stüdyolarına iş hacmi kazandırmaktadır. Topluluğumuzun alternatif kanadı olan 'Play Çeviri', '%100 Türkçe' sloganıyla gayriresmi çeviri projelerini koordine edip teknik destek sunarken; resmi yama kararı alan stüdyoları da projeleri üstlenecek güvenilir yerel çeviri stüdyolarıyla iş ortaklıkları zemininde buluşturmaktadır.",
+        "leader_title": "MUSTAFA KADİR HAKKINDA",
+        "youtube_title": "YOUTUBE İÇERİK STRATEJİSİ",
+        "youtube_desc": "Mustafa Kadir'in kitleler üzerinde inşa ettiği otoritenin temelinde, sıradan oyun oynanış videoları yerine, oyun endüstrisinin mutfağına odaklanan kapsamlı belgesel serileri (örn. THQ firmasının batış hikayesi, Crysis serüveni) ve büyük etkileşim toplayan \"Kötü Yorumlar\" konsepti yatmaktadır. Bu içerik otoritesi, topluluk aktivizmini tetikleyen ana faktördür."
+    },
+    "games": {
+        "badge": "KAMPANYA LİSTESİ",
+        "title_start": "Geçmiş, Gelecek ve ",
+        "title_gradient": "Aktif Projeler",
+        "subtitle": "Türkçe Oyun Seferi'nin doğrudan temas kurduğu, sonuçlandırdığı veya çalışmalarını sürdürdüğü oyunların resmi listesi.",
+        "tabs": {
+            "tab1": "Tamamlanan Kampanyalar",
+            "tab2": "Gelecek Projeler",
+            "tab3": "Aktif Kampanyalar"
+        },
+        "headers": {
+            "game_name": "Oyun Adı",
+            "scale": "Ölçek",
+            "status_detail": "Mevcut Durum / Detay",
+            "publisher_dev": "Yayıncı / Geliştirici",
+            "expectation_importance": "Detaylar & Notlar",
+            "lobby_status": "Mevcut Durum"
+        },
+        "table1": [
+            {
+                "name": "Liminal Point",
+                "scale": "Bağımsız (Indie)",
+                "status": "Topluluk desteğiyle Türkçe yama resmen eklendi."
+            },
+            {
+                "name": "007 First Light",
+                "scale": "AAA (IO Interactive)",
+                "status": "Topluluk talepleri doğrultusunda çıkış gününde resmi Türkçe desteği kazandı."
+            },
+            {
+                "name": "Control (Altyazı)",
+                "scale": "AAA (Remedy)",
+                "status": "Resmi Türkçe altyazı sürecinde topluluk girişimleri büyük rol oynadı."
+            },
+            {
+                "name": "Doom: The Dark Ages",
+                "scale": "AAA (Bethesda)",
+                "status": "Bethesda'nın Türkçe dil desteği sunulan popüler yapımlarından biri."
+            },
+            {
+                "name": "Game of Thrones: Kingsroad",
+                "scale": "Mobil/PC (Netmarble)",
+                "status": "Asya merkezli IP'nin Türkiye'ye Türkçe girmesi sağlandı."
+            },
+            {
+                "name": "Clair Obscur: Expedition 33",
+                "scale": "AA/AAA",
+                "status": "Yapıcı yazışmaların ardından oyun resmi Türkçe dil desteğiyle çıkışını gerçekleştirdi."
+            },
+            {
+                "name": "The Shadow Syndicate",
+                "scale": "Bağımsız / AA",
+                "status": "Eşzamanlı talepler sonucu resmi Türkçe eklendi."
+            },
+            {
+                "name": "Diğer Bağımsızlar (15+)",
+                "scale": "Indie Ekosistemi",
+                "status": "Agni, Choice of Life, Consance, Casual Loop, Cod Violet, Endless Legend 2, Robobeat vb. tamamına Türkçe eklendi."
+            }
+        ],
+        "table2": [
+            {
+                "name": "Metro 2039",
+                "dev": "Deep Silver / 4A Games",
+                "note": "Lansman öncesi dönemde erken reaksiyonla teyit edildi."
+            },
+            {
+                "name": "The Blood of the Deadwalker",
+                "dev": "Bandai Namco",
+                "note": "Geliştiricinin PC platformundaki ilk Türkçe yapımı."
+            },
+            {
+                "name": "Atomic Heart 2 & The Cube",
+                "dev": "Mundfish",
+                "note": "Yeni projeler Türkçe geliştiriliyor."
+            },
+            {
+                "name": "Chernobylite 2",
+                "dev": "The Farm 51",
+                "note": "Kitle talepleri sonrası resmi onay verildi."
+            },
+            {
+                "name": "Industria 2",
+                "dev": "Bleakmill",
+                "note": "2026 çıkış, mağaza sayfasında Türkçe onaylı."
+            },
+            {
+                "name": "Persona 4 Golden / Revival",
+                "dev": "Atlus / SEGA",
+                "note": "Uzun soluklu JRPG yapımlarında Türkçe desteğinin yaygınlaşması adına önemli bir adım."
+            },
+            {
+                "name": "Dark West",
+                "dev": "ARPG",
+                "note": "Topluluk üyelerinin çabası ve yerel stüdyo önerisiyle destek sağlandı."
+            },
+            {
+                "name": "Heroes of Might and Magic (Eer)",
+                "dev": "Ubisoft",
+                "note": "Eer serisinin yeni oyunu Türkçe olacak."
+            }
+        ],
+        "table3": [
+            {
+                "name": "Grand Theft Auto 6 (GTA VI)",
+                "dev": "Rockstar Games",
+                "lobi": "Talep kampanyası sürüyor. Türkçe dil desteğinin eklenmesi için topluluk tarafından yapıcı çağrılar iletiliyor."
+            },
+            {
+                "name": "The Witcher 4 (Polaris)",
+                "dev": "CD Projekt RED",
+                "lobi": "Altyazı ve Türkçe seslendirme talepleri stüdyoya iletildi."
+            },
+            {
+                "name": "Max Payne 1 & 2 Remake",
+                "dev": "Remedy Entertainment",
+                "lobi": "Geliştirici stüdyo ile doğrudan temas kurularak Türkçe desteği talepleri paylaşıldı."
+            },
+            {
+                "name": "Resident Evil & 30 Sword",
+                "dev": "Capcom",
+                "lobi": "Talep yoğunluğu stüdyoya iletildi. Yerelleştirme süreçleri takip ediliyor."
+            },
+            {
+                "name": "Path of Exile 2",
+                "dev": "Grinding Gear Games",
+                "lobi": "Yerelleştirme maliyetleri ve fizibilite konusunda stüdyoyla yapıcı görüşmeler yapıldı."
+            },
+            {
+                "name": "Fable (Reboot)",
+                "dev": "Playground Games (Xbox)",
+                "lobi": "Çıkış dönemine yönelik talepler ve istek listesi çalışmaları devam ediyor."
+            },
+            {
+                "name": "Death Stranding 2: On the Beach",
+                "dev": "Kojima Productions",
+                "lobi": "PC sürümüne Türkçe yerelleştirme eklenmesi için talepler iletiliyor."
+            },
+            {
+                "name": "Diğer Aktif AAA Hedefler",
+                "dev": "Çeşitli Stüdyolar",
+                "lobi": "Halo CE, Forza Horizon 6, Hollow Knight: Silksong, Judas, Phantom Blade Zero vb. için talepler güncel tutuluyor."
+            }
+        ]
+    },
+    "community": {
+        "badge": "TOPLULUK HESAPLARI VE İLETİŞİM",
+        "title_start": "Sosyal Medya ve ",
+        "title_gradient": "İletişim Kanalları",
+        "subtitle": "Türkçe Oyun Seferi'nin başarısı, çoklu platform stratejisine ve entegre topluluk ağlarına dayanmaktadır.",
+        "discord_title": "Lobi Koordinasyon Odası",
+        "discord_desc": "Kampanyaları organize etmek, toplu e-posta ve Steam tartışmaları başlatmak için Discord sunucumuzda bir araya geliyoruz.",
+        "discord_cta": "Kampanya Odasına Katıl",
+        "tournament_title": "Gelişmeler ve Yayınlar",
+        "tournament_desc": "Mustafa Kadir YouTube kanalı ve topluluk duyuruları üzerinden güncel stüdyo yazışmalarını ve yerelleştirme durumlarını takip edin.",
+        "tournament_cta": "Mustafa Kadir YouTube",
+        "table_headers": {
+            "type": "Platform / Araç Türü",
+            "handle": "Hesap / Kullanıcı Adı",
+            "stats": "Güncel İstatistikler",
+            "link": "Bağlantı"
+        },
+        "visit_cta": "Ziyaret Et",
+        "inventory": [
+            {
+                "type": "YouTube (Topluluk)",
+                "handle": "Mustafa Kadir Gönderiler",
+                "stats": "Güncel duyurular ve anlık haberler",
+                "url": "youtube.com/@MstafaKadir/posts"
+            },
+            {
+                "type": "X (Oyun Seferi Topluluğu)",
+                "handle": "Türkçe Oyun Seferi",
+                "stats": "Topluluk paylaşımları ve yardımlaşma",
+                "url": "x.com/i/communities/1888733402792128619"
+            },
+            {
+                "type": "YouTube (Ana)",
+                "handle": "Mustafa Kadir (@MstafaKadir)",
+                "stats": "~57.400 Abone, 770+ Video",
+                "url": "youtube.com/MstafaKadir"
+            },
+            {
+                "type": "Steam Topluluk Grubu",
+                "handle": "Mustafa Kadir TÜRKÇEOYUN",
+                "stats": "1.099 Üye, ~279 Çevrimiçi",
+                "url": "steamcommunity.com/groups/mstafakadir"
+            },
+            {
+                "type": "Steam Profil",
+                "handle": "Mustafa Kadir",
+                "stats": "Seviye 45, 294 Arkadaş",
+                "url": "steamcommunity.com/id/mustafakadir"
+            },
+            {
+                "type": "Discord (Ana)",
+                "handle": "Mustafa Kadir Official",
+                "stats": "Topluluk koordinasyonu ve eylem planları",
+                "url": "discord.gg/CVdrTPUYMQ"
+            },
+            {
+                "type": "Discord (Play Çeviri)",
+                "handle": "Play Çeviri",
+                "stats": "%100 Türkçe, Teknik Destek",
+                "url": "discord.com/servers/play-ceviri-126103152098399360"
+            },
+            {
+                "type": "X / Twitter",
+                "handle": "@MstafaKadir",
+                "stats": "Topluluk duyuruları ve iletişim",
+                "url": "twitter.com/MstafaKadir"
+            },
+            {
+                "type": "Instagram",
+                "handle": "@mustafakadirce",
+                "stats": "Kişisel iletişim",
+                "url": "instagram.com/mustafakadirce"
+            },
+            {
+                "type": "Twitch",
+                "handle": "MstafaKadir",
+                "stats": "Canlı yayın",
+                "url": "twitch.tv/MstafaKadir"
+            },
+            {
+                "type": "Gmail / E-posta",
+                "handle": "mustafa@mkadir.com",
+                "stats": "Resmi Yazışmalar & B2B",
+                "url": "mailto:mustafa@mkadir.com"
+            }
+        ]
+    },
+    "alerts": {
+        "join_soon": "Eylem planlama sunucularımıza katılım için oyun listesi sayfamızı ziyaret edin."
+    },
+    "footer": {
+        "desc": "Türkçe Oyun Seferi, küresel dijital oyun yayıncılarına Türkiye pazar potansiyelini resmi verilerle sunan ve Türkçe dil desteğini yaygınlaştırmayı amaçlayan bağımsız bir girişimdir.",
+        "links_title": "Bağlantılar & İletişim",
+        "link_steam": "Steam Grubu",
+        "link_discord": "Play Çeviri Discord",
+        "link_b2b": "B2B İletişim / Yazışma",
+        "support_title": "Kampanyaya Destek Ol",
+        "support_desc": "Türkçe Oyun Seferi'ni sürdürmemize ve resmi dil mücadelemize katkı sağlamak için Mustafa Kadir'e destek olabilirsiniz.",
+        "support_cta": "Mustafa Kadir'e Destek Ol",
+        "copyright": "Türkçe Oyun Seferi. Tüm Hakları Saklıdır.",
+        "designed_by": "Designed & Developed by",
+        "creator_support_title": "Geliştiriciye Destek Ol",
+        "creator_support_desc": "Web sitesinin tasarım ve kodlama sürecindeki emeğime destek olmak veya ufak bir teşekkür etmek isterseniz, bana bir kahve ısmarlayabilirsiniz.",
+        "creator_support_cta": "ayiikan'a kahve ısmarla"
+    },
+    "news": {
+        "badge": "HABERLER & DUYURULAR",
+        "title_start": "Lobi ve Süreçten ",
+        "title_gradient": "Son Gelişmeler",
+        "subtitle": "Türkçe yerelleştirme mücadelemiz, stüdyolarla kurduğumuz doğrudan yazışmalar ve topluluk duyurularımız.",
+        "items": [
+            {
+                "date": "12 Haziran 2026",
+                "category": "Lobi & Görüşme",
+                "title": "CD Projekt RED ile Witcher 4 Görüşmeleri",
+                "content": "Topluluğun yoğun Witcher 4 Türkçe seslendirme talepleri üzerine stüdyonun Polonya'daki yerelleştirme yöneticilerine doğrudan durum mektubu iletildi. Görüşmeler yapıcı bir zeminde sürüyor.",
+                "cta": "YouTube Gelişmeleri"
+            },
+            {
+                "date": "10 Haziran 2026",
+                "category": "Resmi Başarı",
+                "title": "Expedition 33 Resmi Türkçe Dil Desteğiyle Çıkış Yaptı!",
+                "content": "Topluluk girişimimizin yapıcı mektupları neticesinde resmi Türkçe desteği onaylanan Clair Obscur: Expedition 33, çıkış gününde tamamen Türkçe dil seçeneğiyle yayınlandı.",
+                "cta": "Video Detayları"
+            },
+            {
+                "date": "8 Haziran 2026",
+                "category": "Kampanya",
+                "title": "GTA VI Türkçe Dil Kampanyası Başlatıldı",
+                "content": "Rockstar Games'in beklenen oyunu GTA VI için Steam topluluk tartışma forumlarında eş zamanlı başlık açma ve yapıcı e-posta gönderme eylem planı başlatıldı. Katılım rekor seviyede.",
+                "cta": "Lobi Sayfası"
+            }
+        ]
+    }
+}

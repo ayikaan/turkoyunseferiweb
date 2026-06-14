@@ -1,0 +1,413 @@
+{
+    "brand": {
+        "flag": "🇹🇷",
+        "name": "土耳其游戏倡议"
+    },
+    "nav": {
+        "home": "首页",
+        "about": "Mustafa Kadir & 愿景",
+        "games": "活动 & 成就",
+        "community": "社区 & 频道",
+        "news": "新闻"
+    },
+    "languages": {
+        "tr": "土耳其语",
+        "en": "英语",
+        "de": "德语",
+        "zh": "中文",
+        "fr": "法语",
+        "uk": "乌克兰语",
+        "es": "西班牙语",
+        "ja": "日语",
+        "ko": "韩语",
+        "it": "意语",
+        "ru": "俄语",
+        "pt": "葡萄牙语"
+    },
+    "home": {
+        "badge": "土耳其语本地化倡议与玩家权益",
+        "badge_partners": "合作伙伴 & 联系人",
+        "badge_methodology": "我们的方法",
+        "badge_impact": "行业变革",
+        "badge_asia": "全球障碍",
+        "title_start": "土耳其玩家的 ",
+        "title_gradient": "行业代表权",
+        "subtitle": "土耳其游戏倡议（Turkish Game Initiative）是一个独立的社区项目，旨在通过官方数据向全球游戏发行商展示土耳其的市场潜力，努力争取在游戏内加入官方土耳其语支持。",
+        "cta_explore": "浏览成就表",
+        "cta_learn": "我们的工作方式",
+        "stats": {
+            "stat1_value": "15+",
+            "stat1_label": "支持的大型作品",
+            "stat2_value": "100K+",
+            "stat2_label": "Steam支持留言",
+            "stat3_value": "20+",
+            "stat3_label": "规划中的未来项目"
+        },
+        "partners_title": "我们联系过的全球工作室和品牌",
+        "partners_subtitle": "我们在土耳其语本地化过程中直接联系过的全球工作室，以及我们合作的本地翻译团队。",
+        "partners": [
+            {
+                "name": "Remedy Entertainment",
+                "role": "直接联系 & 请求"
+            },
+            {
+                "name": "Bethesda Softworks",
+                "role": "语言倡议成果"
+            },
+            {
+                "name": "Bandai Namco",
+                "role": "亚洲市场联系"
+            },
+            {
+                "name": "CD Projekt RED",
+                "role": "官方语言 & 配音谈判"
+            },
+            {
+                "name": "Atlus / SEGA",
+                "role": "JRPG本地化请求"
+            },
+            {
+                "name": "Deep Silver / 4A Games",
+                "role": "发售前协议"
+            },
+            {
+                "name": "IO Interactive",
+                "role": "007 First Light 土耳其语项目"
+            },
+            {
+                "name": "Play Çeviri",
+                "role": "社区翻译 & 技术支持"
+            },
+            {
+                "name": "Netmarble",
+                "role": "亚洲项目沟通"
+            },
+            {
+                "name": "Lockpick",
+                "role": "官方翻译与本地化合作"
+            }
+        ],
+        "methodology_title": "我们如何推进？",
+        "methodology_desc": "我们在新公布游戏的 Steam 讨论页面和社交媒体渠道上有组织地以建设性的语气向开发工作室表达我们对土耳其语支持的请求。通过这种方式，我们与工作室管理者建立起专业的沟通桥梁，确保加入官方土耳其语选项。",
+        "pillars": [
+            {
+                "title": "数据驱动的陈述",
+                "desc": "我们向工作室报告土耳其的市场规模、愿望单数量以及本地化将带来的潜在销售预测统计数据。"
+            },
+            {
+                "title": "直接联系",
+                "desc": "我们不仅在社交媒体上开展活动，还直接与游戏开发工作室中拥有决策权的管理者取得联系。"
+            },
+            {
+                "title": "社区参与",
+                "desc": "我们与社区成员一起，在 Steam 讨论论坛和社交媒体上形成建设性且专业的舆论氛围。"
+            }
+        ],
+        "impact_title": "社区倡议对行业的影响",
+        "impact_desc": "我们向全球工作室提供数据，以推动土耳其语支持在数字游戏行业的普及，确保土耳其市场获得其应有的价值。我们的努力为工作室与本地翻译团队之间的合作伙伴关系奠定了基础，同时也提高了玩家作为意识较高群体的觉悟。",
+        "asia_title": "与亚洲工作室的沟通",
+        "asia_desc": "得益于我们与可能对土耳其市场持疏远态度的亚洲开发商之间建设性的沟通，我们促成了像《女神异闻录》等经典系列加入土耳其语支持，或将其纳入相关规划中。",
+        "cases_title": "精选成功案例",
+        "cases": [
+            {
+                "title": "Expedition 33: 建设性对话",
+                "desc": "通过与开发团队建立联系，克服了 Steam 论坛的沟通障碍。在 Mustafa Kadir 发送建设性建议信后，工作室采纳了建议，该作现已支持官方土耳其语并正式发售。"
+            },
+            {
+                "title": "Metro 2039: 早期行动",
+                "desc": "针对距离发售还有较长时间的 Metro 2039 项目，我们及早启动了有组织的倡议活动。得益于这种预先沟通的方法，发行商确认将在游戏发售时提供土耳其语支持。"
+            }
+        ]
+    },
+    "about": {
+        "badge": "我们的故事与宗旨",
+        "title_start": "游戏内土耳其语的 ",
+        "title_gradient": "发展历程",
+        "subtitle": "在 Mustafa Kadir 的带领下，我们的社区致力于向全球游戏开发商展示土耳其语支持的重要性，推动官方本地化进程的普及。",
+        "bio_text": "在 YouTube 频道上制作游戏行业运作和历史纪录片的 Mustafa Kadir 发出号召，玩家们汇聚一堂，组成了一个有组织的社区运动，以解决缺少土耳其语支持的问题。该运动以建设性的语气直接向工作室传达玩家的诉求，为游戏发布土耳其语版本做出了贡献。",
+        "b2b_title": "Play Çeviri 及对本地翻译行业的支持",
+        "b2b_desc": "我们的工作不仅是向工作室发送请求，还为土耳其本地的本地化工作室带来了业务量。社区的分支机构 'Play Çeviri' 在“100%土耳其语”的口号下协调非官方翻译项目并提供技术支持；同时，他们也为决定推出官方补丁的工作室牵线搭桥，与可靠的本地翻译工作室建立合作伙伴关系。",
+        "leader_title": "关于 MUSTAFA KADİR",
+        "youtube_title": "YOUTUBE 内容策略",
+        "youtube_desc": "Mustafa Kadir 在大众中建立起权威的基础，在于他制作的深入探讨游戏行业幕后运作的系列纪录片（例如：THQ 公司的倒闭史、Crysis 历程），而非普通的视频游戏实况，以及引发巨大反响的“恶评反馈”企划。这种内容影响力是激发社区活动的主要动力。"
+    },
+    "games": {
+        "badge": "活动列表",
+        "title_start": "过去、未来与 ",
+        "title_gradient": "进行中的项目",
+        "subtitle": "土耳其游戏倡议直接联系过的、已完成倡议的或仍在持续提供支持的游戏官方列表。",
+        "tabs": {
+            "tab1": "已完成的活动",
+            "tab2": "未来项目",
+            "tab3": "活跃的活动"
+        },
+        "headers": {
+            "game_name": "游戏名称",
+            "scale": "规模",
+            "status_detail": "当前状态 / 详情",
+            "publisher_dev": "发行商 / 开发商",
+            "expectation_importance": "详情 & 备注",
+            "lobby_status": "当前状态"
+        },
+        "table1": [
+            {
+                "name": "Liminal Point",
+                "scale": "独立游戏 (Indie)",
+                "status": "在社区的支持下，官方土耳其语补丁已正式加入。"
+            },
+            {
+                "name": "007 First Light",
+                "scale": "AAA (IO Interactive)",
+                "status": "根据社区的请求，在发售首日即加入了官方土耳其语支持。"
+            },
+            {
+                "name": "Control (字幕)",
+                "scale": "AAA (Remedy)",
+                "status": "在争取官方土耳其语字幕的过程中，社区活动发挥了巨大作用。"
+            },
+            {
+                "name": "Doom: The Dark Ages",
+                "scale": "AAA (Bethesda)",
+                "status": "贝塞斯达旗下提供官方土耳其语支持的热门作品之一。"
+            },
+            {
+                "name": "Game of Thrones: Kingsroad",
+                "scale": "移动端/PC (Netmarble)",
+                "status": "确保了该款亚洲大作 IP 在进入土耳其市场时支持土耳其语。"
+            },
+            {
+                "name": "Clair Obscur: Expedition 33",
+                "scale": "AA/AAA",
+                "status": "经过建设性讨论，该游戏在发布时已加入官方土耳其语支持。"
+            },
+            {
+                "name": "The Shadow Syndicate",
+                "scale": "独立 / AA",
+                "status": "一齐发送请求后，官方土耳其语补丁已添加。"
+            },
+            {
+                "name": "其他独立游戏 (15+)",
+                "scale": "独立游戏生态",
+                "status": "Agni、Choice of Life、Consance、Casual Loop、Cod Violet、Endless Legend 2、Robobeat 等均已加入土耳其语。"
+            }
+        ],
+        "table2": [
+            {
+                "name": "Metro 2039",
+                "dev": "Deep Silver / 4A Games",
+                "note": "通过早期倡议，在发售前阶段已获确认。"
+            },
+            {
+                "name": "The Blood of the Deadwalker",
+                "dev": "Bandai Namco",
+                "note": "开发商在 PC 平台上推出的首款支持官方土耳其语的游戏。"
+            },
+            {
+                "name": "Atomic Heart 2 & The Cube",
+                "dev": "Mundfish",
+                "note": "新项目正在以支持土耳其语为前提进行开发。"
+            },
+            {
+                "name": "Chernobylite 2",
+                "dev": "The Farm 51",
+                "note": "在用户积极请求后获得官方确认。"
+            },
+            {
+                "name": "Industria 2",
+                "dev": "Bleakmill",
+                "note": "2026 年发售，已在 Steam 商店页面确认支持土耳其语。"
+            },
+            {
+                "name": "Persona 4 Golden / Revival",
+                "dev": "Atlus / SEGA",
+                "note": "在大作 JRPG 作品中推广土耳其语支持的重要一步。"
+            },
+            {
+                "name": "Dark West",
+                "dev": "ARPG",
+                "note": "在社区成员的努力和本地翻译工作室的推荐下确保了支持。"
+            },
+            {
+                "name": "Heroes of Might and Magic (Eer)",
+                "dev": "Ubisoft",
+                "note": "Eer 系列的新作将官方支持土耳其语。"
+            }
+        ],
+        "table3": [
+            {
+                "name": "Grand Theft Auto 6 (GTA VI)",
+                "dev": "Rockstar Games",
+                "lobi": "请求活动仍在继续。社区正在发送要求加入土耳其语支持的建设性呼吁。"
+            },
+            {
+                "name": "The Witcher 4 (Polaris)",
+                "dev": "CD Projekt RED",
+                "lobi": "已向工作室发送了字幕和土耳其语配音的请求。"
+            },
+            {
+                "name": "Max Payne 1 & 2 Remake",
+                "dev": "Remedy Entertainment",
+                "lobi": "已直接与开发工作室取得联系，分享了土耳其语请求的详细信息。"
+            },
+            {
+                "name": "Resident Evil & 30 Sword",
+                "dev": "Capcom",
+                "lobi": "已向工作室传达了强烈需求。正在跟踪本地化进程。"
+            },
+            {
+                "name": "Path of Exile 2",
+                "dev": "Grinding Gear Games",
+                "lobi": "与工作室就本地化可行性和成本进行了建设性商讨。"
+            },
+            {
+                "name": "Fable (Reboot)",
+                "dev": "Playground Games (Xbox)",
+                "lobi": "针对发售阶段的愿望单和请求工作仍在继续。"
+            },
+            {
+                "name": "Death Stranding 2: On the Beach",
+                "dev": "Kojima Productions",
+                "lobi": "已发送请求，希望在 PC 版本中加入土耳其语本地化。"
+            },
+            {
+                "name": "其他进行中的 AAA 目标",
+                "dev": "各大工作室",
+                "lobi": "针对 Halo CE、Forza Horizon 6、Hollow Knight: Silksong、Judas、Phantom Blade Zero 等的请求活动保持活跃。"
+            }
+        ]
+    },
+    "community": {
+        "badge": "社区账号与联络",
+        "title_start": "社交媒体与 ",
+        "title_gradient": "沟通渠道",
+        "subtitle": "土耳其游戏倡议的成功建立在多平台策略和社区网络有机整合的基础之上。",
+        "discord_title": "活动协调室",
+        "discord_desc": "我们在 Discord 服务器中汇聚，组织活动、发起邮件总攻和 Steam 讨论帖。",
+        "discord_cta": "加入活动协调室",
+        "tournament_title": "最新进展与广播",
+        "tournament_desc": "通过 Mustafa Kadir 的 YouTube 频道和社区公告跟踪当前的开发商信函和本地化状态。",
+        "tournament_cta": "Mustafa Kadir YouTube",
+        "table_headers": {
+            "type": "平台 / 工具类型",
+            "handle": "账号 / 用户名",
+            "stats": "当前数据",
+            "link": "链接"
+        },
+        "visit_cta": "访问",
+        "inventory": [
+            {
+                "type": "YouTube (Community)",
+                "handle": "Mustafa Kadir Posts",
+                "stats": "Latest updates and instant news",
+                "url": "youtube.com/@MstafaKadir/posts"
+            },
+            {
+                "type": "X (Game Initiative Community)",
+                "handle": "Turkish Game Initiative",
+                "stats": "Community posts and collaboration",
+                "url": "x.com/i/communities/1888733402792128619"
+            },
+            {
+                "type": "YouTube (主频道)",
+                "handle": "Mustafa Kadir (@MstafaKadir)",
+                "stats": "~57.400 订阅者, 770+ 视频",
+                "url": "youtube.com/MstafaKadir"
+            },
+            {
+                "type": "Steam 社区组",
+                "handle": "Mustafa Kadir TÜRKÇEOYUN",
+                "stats": "1.099 成员, ~279 在线",
+                "url": "steamcommunity.com/groups/mstafakadir"
+            },
+            {
+                "type": "Steam 个人资料",
+                "handle": "Mustafa Kadir",
+                "stats": "等级 45, 294 好友",
+                "url": "steamcommunity.com/id/mustafakadir"
+            },
+            {
+                "type": "Discord (主服务器)",
+                "handle": "Mustafa Kadir Official",
+                "stats": "社区协调与行动计划",
+                "url": "discord.gg/CVdrTPUYMQ"
+            },
+            {
+                "type": "Discord (Play Çeviri)",
+                "handle": "Play Çeviri",
+                "stats": "%100 土耳其语, 技术支持",
+                "url": "discord.com/servers/play-ceviri-126103152098399360"
+            },
+            {
+                "type": "X / Twitter",
+                "handle": "@MstafaKadir",
+                "stats": "社区公告与联络",
+                "url": "twitter.com/MstafaKadir"
+            },
+            {
+                "type": "Instagram",
+                "handle": "@mustafakadirce",
+                "stats": "个人联络",
+                "url": "instagram.com/mustafakadirce"
+            },
+            {
+                "type": "Twitch",
+                "handle": "MstafaKadir",
+                "stats": "直播",
+                "url": "twitch.tv/MstafaKadir"
+            },
+            {
+                "type": "Gmail / 电子邮件",
+                "handle": "mustafa@mkadir.com",
+                "stats": "官方信函 & B2B",
+                "url": "mailto:mustafa@mkadir.com"
+            }
+        ]
+    },
+    "alerts": {
+        "join_soon": "访问我们的游戏项目列表页面以加入我们的活动协调服务器。"
+    },
+    "footer": {
+        "desc": "土耳其游戏倡议是一个独立的社区项目，通过官方数据向全球游戏发行商展示土耳其的市场潜力，旨在推广土耳其语支持。",
+        "links_title": "链接 & 联络",
+        "link_steam": "Steam 组",
+        "link_discord": "Play Çeviri Discord",
+        "link_b2b": "B2B 联络 / 咨询",
+        "support_title": "支持该倡议",
+        "support_desc": "为了帮助我们维持土耳其游戏倡议并为我们的官方语言活动做出贡献，您可以支持 Mustafa Kadir。",
+        "support_cta": "支持 Mustafa Kadir",
+        "copyright": "土耳其游戏倡议。保留所有权利。",
+        "designed_by": "设计与开发：",
+        "creator_support_title": "支持开发者",
+        "creator_support_desc": "如果您想支持我在此网站设计和编码方面的工作，或者表达小小的谢意，您可以请我喝杯咖啡。",
+        "creator_support_cta": "请 ayiikan 喝杯咖啡"
+    },
+    "news": {
+        "badge": "新闻与公告",
+        "title_start": "倡议的 ",
+        "title_gradient": "最新进展",
+        "subtitle": "我们的土耳其语本地化努力、向全球工作室发送的直接问询以及社区公告。",
+        "items": [
+            {
+                "date": "2026年6月12日",
+                "category": "游说与洽谈",
+                "title": "与 CD Projekt RED 就《巫师 4》进行洽谈",
+                "content": "鉴于社区对《巫师 4》土耳其语配音的强烈呼声，我们直接向波兰的本地化负责人递交了正式建议信。目前洽谈正朝着积极的方向进行。",
+                "cta": "在 YouTube 上观看"
+            },
+            {
+                "date": "2026年6月10日",
+                "category": "官方成功",
+                "title": "《Expedition 33》已搭载官方土耳其语支持正式发售！",
+                "content": "得益于我们社区的建设性建议信，官方土耳其语支持已获确认的《Clair Obscur: Expedition 33》在发售首日即正式提供了完整的土耳其语支持。",
+                "cta": "查看视频详情"
+            },
+            {
+                "date": "2026年6月8日",
+                "category": "活动",
+                "title": "《GTA VI》土耳其语支持倡议活动正式启动",
+                "content": "针对 Rockstar Games 备受期待的《GTA VI》，我们在 Steam 讨论论坛和邮件平台发起了协同倡议活动，社区参与度创下历史新高。",
+                "cta": "活动中心"
+            }
+        ]
+    }
+}
