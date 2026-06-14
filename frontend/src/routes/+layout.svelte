@@ -127,11 +127,11 @@
 {#snippet brandName()}
 	<div class="brand-signature-logo">
 		{#if currentLanguage.value === 'tr'}
-			<span class="brand-bold">T├╝rk├ğe</span><span class="brand-light">Oyun Seferi</span>
+			<span class="brand-bold">Türkçe</span><span class="brand-light">Oyun Seferi</span>
 		{:else if currentLanguage.value === 'en'}
 			<span class="brand-bold">TURKISH GAME</span><span class="brand-light"> INITIATIVE</span>
 		{:else if currentLanguage.value === 'de'}
-			<span class="brand-bold">T├£RKISCHE</span><span class="brand-light"> SPIELEINITIATIVE</span>
+			<span class="brand-bold">TÜRKISCHE</span><span class="brand-light"> SPIELEINITIATIVE</span>
 		{:else if currentLanguage.value === 'fr'}
 			<span class="brand-bold">INITIATIVE DE</span><span class="brand-light"> JEU TURC</span>
 		{:else if currentLanguage.value === 'es'}
@@ -141,9 +141,9 @@
 		{:else if currentLanguage.value === 'pt'}
 			<span class="brand-bold">INICIATIVA DO</span><span class="brand-light"> JOGO TURCO</span>
 		{:else if currentLanguage.value === 'ru'}
-			<span class="brand-bold">ºİºØºİºĞºİºÉºóºİºÆºÉ</span><span class="brand-light"> ºóºúºáºòºĞºÜºİºÑ ºİºôºá</span>
+			<span class="brand-bold">ТУРЕЦКАЯ</span><span class="brand-light"> ИГРОВАЯ ИНИЦИАТИВА</span>
 		{:else if currentLanguage.value === 'uk'}
-			<span class="brand-bold">ºåºØºåºĞºåºÉºóºİºÆºÉ</span><span class="brand-light"> ºóºúºáºòºĞº¼ºÜºİºÑ ºåºôºŞºá</span>
+			<span class="brand-bold">ТУРЕЦЬКА</span><span class="brand-light"> ІГРОВА ІНІЦІАТИВА</span>
 		{:else}
 			<span class="brand-bold">{t.brand.name}</span>
 		{/if}
