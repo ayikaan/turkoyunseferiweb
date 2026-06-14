@@ -37,5 +37,5 @@ jobs:
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          accountId: bb19045ce7132717a3db9b705f2bb331
           command: pages deploy frontend/.svelte-kit/cloudflare --project-name=turkoyunseferi
