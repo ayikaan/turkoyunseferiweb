@@ -6,10 +6,12 @@ header {
     left: 0;
     z-index: 100;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    background: rgba(7, 7, 8, 0.6) !important; /* Force transperancy for background to see blur */
-    backdrop-filter: blur(32px) saturate(200%) !important;
-    -webkit-backdrop-filter: blur(32px) saturate(200%) !important;
+    background: rgba(7, 7, 8, 0.6) !important;
+    -webkit-backdrop-filter: blur(32px) !important;
+    backdrop-filter: blur(32px) !important;
+    filter: none;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    will-change: backdrop-filter;
 }
 
 nav {
