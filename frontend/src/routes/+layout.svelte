@@ -335,7 +335,10 @@
 					{t.footer.support_desc}
 				</p>
 				<a href="https://youtube.com/MstafaKadir/join" target="_blank" rel="noopener noreferrer" class="btn-coffee-premium">
-					☕ {@html t.footer.support_cta.replace('Mustafa Kadir', '<span class="signature-mustafa">Mustafa Kadir</span>')}
+					<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display: inline-block; vertical-align: middle; margin-right: 6px; margin-top: -2px;">
+						<path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.517 3.545 12 3.545 12 3.545s-7.517 0-9.388.508a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 0 0 2.11 2.11C4.483 20.455 12 20.455 12 20.455s7.517 0 9.388-.508a3.003 3.003 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+					</svg>
+					{@html t.footer.support_cta.replace('Mustafa Kadir', '<span class="signature-mustafa">Mustafa Kadir</span>')}
 				</a>
 			</div>
 			
