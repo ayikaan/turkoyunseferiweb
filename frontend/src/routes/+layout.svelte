@@ -153,6 +153,7 @@
 <svelte:window onclick={closeDropdowns} />
 
 <svelte:head>
+	<title>Türkçe Oyun Seferi</title>
 	<link rel="icon" href={favicon} />
 </svelte:head>
 
