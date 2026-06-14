@@ -2,6 +2,7 @@ import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 import fs from 'fs';
 import path from 'path';
+import { db } from '$lib/server/db';
 
 interface StatsCache {
     youtubeSubscribers: string;
@@ -158,16 +159,27 @@ async function scrapeStats(): Promise<Omit<StatsCache, 'timestamp'>> {
 
 export const GET: RequestHandler = async () => {
     const now = Date.now();
+
+    // Fetch overrides from settings table
+    let overrides: Record<string, string> = {};
+    try {
+        const settingsRes = await db.execute("SELECT key, value FROM settings WHERE key LIKE 'stat_%'");
+        for (const row of settingsRes.rows) {
+            overrides[row.key as string] = row.value as string;
+        }
+    } catch (e) {
+        console.error('Failed to read database overrides for stats:', e);
+    }
     
     if (cache && (now - cache.timestamp < CACHE_TTL_MS)) {
         return json({
-            youtubeSubscribers: cache.youtubeSubscribers,
-            youtubeVideos: cache.youtubeVideos,
-            steamGroupMembers: cache.steamGroupMembers,
-            steamGroupOnline: cache.steamGroupOnline,
-            steamLevel: cache.steamLevel,
-            steamFriends: cache.steamFriends,
-            xCommunityMembers: cache.xCommunityMembers
+            youtubeSubscribers: overrides.stat_youtube_subscribers || cache.youtubeSubscribers,
+            youtubeVideos: overrides.stat_youtube_videos || cache.youtubeVideos,
+            steamGroupMembers: overrides.stat_steam_members || cache.steamGroupMembers,
+            steamGroupOnline: overrides.stat_steam_online || cache.steamGroupOnline,
+            steamLevel: overrides.stat_steam_level || cache.steamLevel,
+            steamFriends: overrides.stat_steam_friends || cache.steamFriends,
+            xCommunityMembers: overrides.stat_x_members || cache.xCommunityMembers
         });
     }
 
@@ -177,13 +189,13 @@ export const GET: RequestHandler = async () => {
         const freshStats = await scrapeStats();
         
         const updatedStats = {
-            youtubeSubscribers: freshStats.youtubeSubscribers || cache?.youtubeSubscribers || diskCache.youtubeSubscribers || '57,4 B',
-            youtubeVideos: freshStats.youtubeVideos || cache?.youtubeVideos || diskCache.youtubeVideos || '776',
-            steamGroupMembers: freshStats.steamGroupMembers || cache?.steamGroupMembers || diskCache.steamGroupMembers || '1.101',
-            steamGroupOnline: freshStats.steamGroupOnline || cache?.steamGroupOnline || diskCache.steamGroupOnline || '380',
-            steamLevel: freshStats.steamLevel || cache?.steamLevel || diskCache.steamLevel || '45',
-            steamFriends: freshStats.steamFriends || cache?.steamFriends || diskCache.steamFriends || '294',
-            xCommunityMembers: freshStats.xCommunityMembers || cache?.xCommunityMembers || diskCache.xCommunityMembers || '4,7 B'
+            youtubeSubscribers: overrides.stat_youtube_subscribers || freshStats.youtubeSubscribers || cache?.youtubeSubscribers || diskCache.youtubeSubscribers || '57,4 B',
+            youtubeVideos: overrides.stat_youtube_videos || freshStats.youtubeVideos || cache?.youtubeVideos || diskCache.youtubeVideos || '776',
+            steamGroupMembers: overrides.stat_steam_members || freshStats.steamGroupMembers || cache?.steamGroupMembers || diskCache.steamGroupMembers || '1.101',
+            steamGroupOnline: overrides.stat_steam_online || freshStats.steamGroupOnline || cache?.steamGroupOnline || diskCache.steamGroupOnline || '380',
+            steamLevel: overrides.stat_steam_level || freshStats.steamLevel || cache?.steamLevel || diskCache.steamLevel || '45',
+            steamFriends: overrides.stat_steam_friends || freshStats.steamFriends || cache?.steamFriends || diskCache.steamFriends || '294',
+            xCommunityMembers: overrides.stat_x_members || freshStats.xCommunityMembers || cache?.xCommunityMembers || diskCache.xCommunityMembers || '4,7 B'
         };
 
         cache = {
@@ -197,13 +209,13 @@ export const GET: RequestHandler = async () => {
         return json(updatedStats);
     } catch (err) {
         const fallbackStats = {
-            youtubeSubscribers: cache?.youtubeSubscribers || diskCache.youtubeSubscribers || '57,4 B',
-            youtubeVideos: cache?.youtubeVideos || diskCache.youtubeVideos || '776',
-            steamGroupMembers: cache?.steamGroupMembers || diskCache.steamGroupMembers || '1.101',
-            steamGroupOnline: cache?.steamGroupOnline || diskCache.steamGroupOnline || '380',
-            steamLevel: cache?.steamLevel || diskCache.steamLevel || '45',
-            steamFriends: cache?.steamFriends || diskCache.steamFriends || '294',
-            xCommunityMembers: cache?.xCommunityMembers || diskCache.xCommunityMembers || '4,7 B'
+            youtubeSubscribers: overrides.stat_youtube_subscribers || cache?.youtubeSubscribers || diskCache.youtubeSubscribers || '57,4 B',
+            youtubeVideos: overrides.stat_youtube_videos || cache?.youtubeVideos || diskCache.youtubeVideos || '776',
+            steamGroupMembers: overrides.stat_steam_members || cache?.steamGroupMembers || diskCache.steamGroupMembers || '1.101',
+            steamGroupOnline: overrides.stat_steam_online || cache?.steamGroupOnline || diskCache.steamGroupOnline || '380',
+            steamLevel: overrides.stat_steam_level || cache?.steamLevel || diskCache.steamLevel || '45',
+            steamFriends: overrides.stat_steam_friends || cache?.steamFriends || diskCache.steamFriends || '294',
+            xCommunityMembers: overrides.stat_x_members || cache?.xCommunityMembers || diskCache.xCommunityMembers || '4,7 B'
         };
         return json(fallbackStats);
     }

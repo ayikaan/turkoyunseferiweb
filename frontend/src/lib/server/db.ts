@@ -42,6 +42,33 @@ async function initDb() {
             )
         `);
 
+        await db.execute(`
+            CREATE TABLE IF NOT EXISTS settings (
+                key TEXT PRIMARY KEY,
+                value TEXT NOT NULL
+            )
+        `);
+
+        // Seed settings table if empty
+        const settingsCheck = await db.execute("SELECT COUNT(*) as count FROM settings");
+        if (Number(settingsCheck.rows[0]?.count || 0) === 0) {
+            const defaults = [
+                ['social_youtube', 'https://youtube.com/MstafaKadir'],
+                ['social_youtube_join', 'https://youtube.com/MstafaKadir/join'],
+                ['social_instagram', 'https://instagram.com/mustafakadirce'],
+                ['social_discord', 'https://discord.gg/CVdrTPUYMQ'],
+                ['social_discord_play', 'https://discord.com/servers/play-ceviri-126103152098399360'],
+                ['social_steam', 'https://steamcommunity.com/groups/mstafakadir'],
+                ['agent_enabled', '1']
+            ];
+            for (const [key, val] of defaults) {
+                await db.execute({
+                    sql: "INSERT OR IGNORE INTO settings (key, value) VALUES (?, ?)",
+                    args: [key, val]
+                });
+            }
+        }
+
         // Add support fields if they do not exist
         await db.execute("ALTER TABLE news ADD COLUMN support_url TEXT").catch(() => {});
         await db.execute("ALTER TABLE news ADD COLUMN support_btn TEXT").catch(() => {});

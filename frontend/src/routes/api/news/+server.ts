@@ -14,7 +14,7 @@ function getClientIp(request: Request, clientAddress: string) {
 
 export const GET: RequestHandler = async () => {
     try {
-        const result = await db.execute("SELECT * FROM news");
+        const result = await db.execute("SELECT * FROM news ORDER BY rowid DESC");
         const newsItems = result.rows.map((row: any) => ({
             id: row.id,
             date: row.date,

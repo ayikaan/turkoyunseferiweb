@@ -9,7 +9,15 @@
 	import { onNavigate } from '$app/navigation';
 	import { page } from '$app/stores';
 
-	let { children } = $props();
+	let { children, data } = $props();
+	const settings = $derived(data?.settings || {
+		social_youtube: 'https://youtube.com/MstafaKadir',
+		social_youtube_join: 'https://youtube.com/MstafaKadir/join',
+		social_instagram: 'https://instagram.com/mustafakadirce',
+		social_discord: 'https://discord.gg/CVdrTPUYMQ',
+		social_discord_play: 'https://discord.com/servers/play-ceviri-126103152098399360',
+		social_steam: 'https://steamcommunity.com/groups/mstafakadir'
+	});
 
 	let dropdownOpen = $state(false);
 	let themeDropdownOpen = $state(false);
@@ -306,13 +314,13 @@
 					{t.footer.desc}
 				</p>
 				<div style="display: flex; gap: 15px; align-items: center; margin-top: 8px;">
-					<a href="https://instagram.com/mustafakadirce" target="_blank" rel="noopener noreferrer" class="social-icon-link" aria-label="Instagram" style="color: var(--text-secondary);">
+					<a href={settings.social_instagram} target="_blank" rel="noopener noreferrer" class="social-icon-link" aria-label="Instagram" style="color: var(--text-secondary);">
 						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
 					</a>
-					<a href="https://discord.gg/CVdrTPUYMQ" target="_blank" rel="noopener noreferrer" class="social-icon-link" aria-label="Discord" style="color: var(--text-secondary);">
+					<a href={settings.social_discord} target="_blank" rel="noopener noreferrer" class="social-icon-link" aria-label="Discord" style="color: var(--text-secondary);">
 						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 127.14 96.36" fill="currentColor"><path d="M107.7,8.07A105.15,105.15,0,0,0,77.26,0a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.22,6.83,77.19,77.19,0,0,0,49.88,0,105.15,105.15,0,0,0,19.44,8.07C3.66,31.58-1.86,54.65,1,77.53A105.73,105.73,0,0,0,32,96.36a77.7,77.7,0,0,0,6.63-10.85,68.43,68.43,0,0,1-10.5-5c.88-.65,1.72-1.34,2.51-2a75.58,75.58,0,0,0,72.9,0c.79.71,1.63,1.4,2.51,2a68.43,68.43,0,0,1-10.5,5,77.7,77.7,0,0,0,6.63,10.85,105.73,105.73,0,0,0,31-18.83C129.87,50.22,123.63,27.34,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53S36.18,40.36,42.45,40.36,53.83,46,53.83,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.24,60,73.24,53S78.41,40.36,84.69,40.36,96.07,46,96.07,53,91,65.69,84.69,65.69Z"/></svg>
 					</a>
-					<a href="https://youtube.com/MstafaKadir" target="_blank" rel="noopener noreferrer" class="social-icon-link" aria-label="YouTube" style="color: var(--text-secondary);">
+					<a href={settings.social_youtube} target="_blank" rel="noopener noreferrer" class="social-icon-link" aria-label="YouTube" style="color: var(--text-secondary);">
 						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17z"/><path d="m10 15 5-3-5-3z"/></svg>
 					</a>
 				</div>
@@ -322,8 +330,8 @@
 			<div style="display: flex; flex-direction: column; gap: 16px;">
 				<h4 style="font-size: 0.85rem; font-weight: 700; color: var(--accent-color); text-transform: uppercase; letter-spacing: 1px;">{t.footer.links_title}</h4>
 				<div style="display: flex; flex-direction: column; gap: 10px;">
-					<a href="https://steamcommunity.com/groups/mstafakadir" target="_blank" rel="noopener noreferrer" class="footer-link" style="font-size: 0.85rem; width: fit-content;">{t.footer.link_steam}</a>
-					<a href="https://discord.com/servers/play-ceviri-126103152098399360" target="_blank" rel="noopener noreferrer" class="footer-link" style="font-size: 0.85rem; width: fit-content;">{t.footer.link_discord}</a>
+					<a href={settings.social_steam} target="_blank" rel="noopener noreferrer" class="footer-link" style="font-size: 0.85rem; width: fit-content;">{t.footer.link_steam}</a>
+					<a href={settings.social_discord_play} target="_blank" rel="noopener noreferrer" class="footer-link" style="font-size: 0.85rem; width: fit-content;">{t.footer.link_discord}</a>
 					<a href="mailto:mustafa@mkadir.com" class="footer-link" style="font-size: 0.85rem; width: fit-content;">{t.footer.link_b2b}</a>
 				</div>
 			</div>
@@ -334,7 +342,7 @@
 				<p style="color: var(--text-secondary); font-size: 0.85rem; line-height: 1.6; margin-bottom: 5px;">
 					{t.footer.support_desc}
 				</p>
-				<a href="https://youtube.com/MstafaKadir/join" target="_blank" rel="noopener noreferrer" class="btn-coffee-premium">
+				<a href={settings.social_youtube_join} target="_blank" rel="noopener noreferrer" class="btn-coffee-premium">
 					<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display: inline-block; vertical-align: middle; margin-right: 6px; margin-top: -2px;">
 						<path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.517 3.545 12 3.545 12 3.545s-7.517 0-9.388.508a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 0 0 2.11 2.11C4.483 20.455 12 20.455 12 20.455s7.517 0 9.388-.508a3.003 3.003 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
 					</svg>

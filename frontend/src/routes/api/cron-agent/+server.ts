@@ -287,7 +287,7 @@ async function fetchXCommunity(cookie?: string, limit = 5): Promise<Array<{ text
     return [];
 }
 
-export const GET: RequestHandler = async ({ request }) => {
+export const GET: RequestHandler = async ({ request, url }) => {
     // Auth Check — accepts NEWS_API_TOKEN (Python agent) or CRON_SECRET (Vercel cron)
     const apiToken = env.NEWS_API_TOKEN || process.env.NEWS_API_TOKEN;
     const cronSecret = env.CRON_SECRET || process.env.CRON_SECRET;
@@ -298,6 +298,20 @@ export const GET: RequestHandler = async ({ request }) => {
 
     if (!isValidApiToken && !isValidCron) {
         return json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    // Check if agent is enabled (allow bypass for manual triggers)
+    const isManual = url.searchParams.get('manual') === 'true';
+    if (!isManual) {
+        try {
+            const agentEnabledRes = await db.execute("SELECT value FROM settings WHERE key = 'agent_enabled'");
+            const isAgentEnabled = agentEnabledRes.rows[0]?.value !== '0';
+            if (!isAgentEnabled) {
+                return json({ success: true, message: 'Autonomous agent is disabled in settings.' });
+            }
+        } catch (e) {
+            console.error('Failed to check agent_enabled setting:', e);
+        }
     }
 
     const groqKey = env.GROQ_API_KEY || process.env.GROQ_API_KEY;
