@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { currentLanguage, t } from '$lib/i18n';
+	import { currentLanguage, t } from '$lib/i18n.svelte';
 	import { onMount } from 'svelte';
 
 	let title = $state('');
