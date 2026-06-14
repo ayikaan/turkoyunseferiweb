@@ -1,4 +1,4 @@
-﻿<script lang="ts">
+<script lang="ts">
 	import favicon from '$lib/assets/favicon.svg';
 	import '../app.css';
 	import '../components.css';
@@ -27,25 +27,25 @@
 	}
 
 	const themes = [
-		{ id: 'dark', icon: '­şîÖ' },
-		{ id: 'light', icon: 'ÔİÇ´©Å' },
-		{ id: 'forest', icon: '­şî▓' },
-		{ id: 'ocean', icon: '­şîè' }
+		{ id: 'dark', icon: '🌙' },
+		{ id: 'light', icon: '☀️' },
+		{ id: 'forest', icon: '🌲' },
+		{ id: 'ocean', icon: '🌊' }
 	];
 
 	const themeNames: Record<string, Record<string, string>> = {
-		tr: { dark: 'Karanl─▒k', light: 'Ayd─▒nl─▒k', forest: 'Orman', ocean: 'Okyanus' },
+		tr: { dark: 'Karanlık', light: 'Aydınlık', forest: 'Orman', ocean: 'Okyanus' },
 		en: { dark: 'Dark', light: 'Light', forest: 'Forest', ocean: 'Ocean' },
 		de: { dark: 'Dunkel', light: 'Hell', forest: 'Wald', ocean: 'Ozean' },
-		es: { dark: 'Oscuro', light: 'Claro', forest: 'Bosque', ocean: 'Oc├®ano' },
-		fr: { dark: 'Sombre', light: 'Clair', forest: 'For├¬t', ocean: 'Oc├®an' },
+		es: { dark: 'Oscuro', light: 'Claro', forest: 'Bosque', ocean: 'Océano' },
+		fr: { dark: 'Sombre', light: 'Clair', forest: 'Forêt', ocean: 'Océan' },
 		it: { dark: 'Scuro', light: 'Chiaro', forest: 'Foresta', ocean: 'Oceano' },
 		pt: { dark: 'Escuro', light: 'Claro', forest: 'Floresta', ocean: 'Oceano' },
-		ru: { dark: 'ºóªæº╝º¢º░ªÅ', light: 'ºíº▓ºÁªéº╗º░ªÅ', forest: 'ºøºÁªüº¢º░ªÅ', ocean: 'ºŞº║ºÁº░º¢ªüº║º░ªÅ' },
-		uk: { dark: 'ºóºÁº╝º¢º░', light: 'ºíº▓ªûªéº╗º░', forest: 'ºøªûªüº¥º▓º░', ocean: 'ºŞº║ºÁº░º¢ªüªîº║º░' },
-		zh: { dark: 'µÀ▒×ë▓', light: 'µÁà×ë▓', forest: 'µú«µŞù', ocean: 'µÁÀµ┤ï' },
-		ja: { dark: 'ÒâÇÒâ╝Òé»', light: 'Òâ®ÒéñÒâê', forest: 'ÒâòÒé®Òâ¼Òé╣Òâê', ocean: 'Òé¬Òâ╝ÒéÀÒâúÒâ│' },
-		ko: { dark: 'Ùïñÿü¼', light: 'ÙØ╝ìØ┤ÿè©', forest: 'ÿÅ¼Ùáêìèñÿè©', ocean: 'ìİñìàİ' }
+		ru: { dark: 'Тёмный', light: 'Светлый', forest: 'Лесной', ocean: 'Океанский' },
+		uk: { dark: 'Темний', light: 'Світлий', forest: 'Лісовий', ocean: 'Океанський' },
+		zh: { dark: '暗色', light: '亮色', forest: '森林', ocean: '海洋' },
+		ja: { dark: 'ダーク', light: 'ライト', forest: 'フォレスト', ocean: 'オーシャン' },
+		ko: { dark: '다크', light: '라이트', forest: '포레스트', ocean: '오션' }
 	};
 
 	import { onMount } from 'svelte';
@@ -98,18 +98,18 @@
 	}
 
 	const nativeLanguageNames: Record<string, string> = {
-		tr: 'T├╝rk├ğe',
+		tr: 'Türkçe',
 		en: 'English',
 		de: 'Deutsch',
-		zh: 'õ©¡µûç',
-		fr: 'Fran├ğais',
-		uk: 'ºúº║ªÇº░ªùº¢ªüªîº║º░',
-		es: 'Espa├▒ol',
-		ja: 'µùÑµ£¼×¬Ş',
-		ko: 'ÿò£ÛÁ¡ìû┤',
+		zh: '中文',
+		fr: 'Français',
+		uk: 'Українська',
+		es: 'Español',
+		ja: '日本語',
+		ko: '한국어',
 		it: 'Italiano',
-		ru: 'ºáªâªüªüº║º©º╣',
-		pt: 'Portugu├¬s'
+		ru: 'Русский',
+		pt: 'Português'
 	};
 
 	onNavigate((navigation) => {
