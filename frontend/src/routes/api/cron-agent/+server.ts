@@ -314,10 +314,10 @@ export const GET: RequestHandler = async ({ request, url }) => {
         }
     }
 
-    const rawKey = env.GROQ_API_KEY || process.env.GROQ_API_KEY || "";
+    const rawKey = env.GROQ_API_KEYS || process.env.GROQ_API_KEYS || env.GROQ_API_KEY || process.env.GROQ_API_KEY || "";
     const apiKeys = rawKey.split(',').map(k => k.trim()).filter(Boolean);
     if (apiKeys.length === 0) {
-        return json({ error: 'Groq API Key is not configured on server' }, { status: 500 });
+        return json({ error: 'Groq API Keys are not configured on server' }, { status: 500 });
     }
 
     const ytCookie = env.YOUTUBE_COOKIE || process.env.YOUTUBE_COOKIE;

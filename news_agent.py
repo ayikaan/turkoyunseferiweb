@@ -307,11 +307,11 @@ def fetch_existing_news():
 
 
 def call_groq(payload):
-    raw_keys = os.environ.get("GROQ_API_KEY", "")
+    raw_keys = os.environ.get("GROQ_API_KEYS") or os.environ.get("GROQ_API_KEY", "")
     api_keys = [k.strip() for k in raw_keys.split(",") if k.strip()]
     
     if not api_keys:
-        print("ERROR: No GROQ_API_KEY configured!", file=sys.stderr)
+        print("ERROR: No GROQ_API_KEYS or GROQ_API_KEY configured!", file=sys.stderr)
         return None
         
     user_prompt = (

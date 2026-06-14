@@ -663,10 +663,10 @@ export const actions: Actions = {
             return fail(400, { error: 'Title, Content, Category, and Details URL are required.' });
         }
 
-        const rawKey = env.GROQ_API_KEY || process.env.GROQ_API_KEY || "";
+        const rawKey = env.GROQ_API_KEYS || process.env.GROQ_API_KEYS || env.GROQ_API_KEY || process.env.GROQ_API_KEY || "";
         const apiKeys = rawKey.split(',').map(k => k.trim()).filter(Boolean);
         if (apiKeys.length === 0) {
-            return fail(500, { error: 'GROQ_API_KEY is not configured on the server.' });
+            return fail(500, { error: 'GROQ_API_KEYS is not configured on the server.' });
         }
 
         const modelName = env.GROQ_MODEL || process.env.GROQ_MODEL || "llama-3.3-70b-versatile";
