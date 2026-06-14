@@ -198,7 +198,7 @@
 				<!-- Theme Selector Dropdown -->
 				<div class="lang-selector-container">
 					<button class="lang-trigger-btn" class:active={themeDropdownOpen} onclick={toggleThemeDropdown}>
-						<span style="font-size: 1.05rem; display: inline-flex; align-items: center; justify-content: center;">{themes.find(th => th.id === currentTheme)?.icon || '­şîÖ'}</span>
+						<span style="font-size: 1.05rem; display: inline-flex; align-items: center; justify-content: center;">{themes.find(th => th.id === currentTheme)?.icon || '⚙️'}</span>
 						<span class="active-lang-name">{themeNames[currentLanguage.value]?.[currentTheme] || currentTheme}</span>
 						<svg class="dropdown-chevron" class:rotated={themeDropdownOpen} width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
 							<polyline points="6 9 12 15 18 9"></polyline>
@@ -269,7 +269,7 @@
 				<div class="lang-selector-container" style="width: 100%;">
 					<button class="lang-trigger-btn" style="width: 100%; justify-content: space-between;" class:active={themeDropdownOpen} onclick={toggleThemeDropdown}>
 						<div style="display: flex; align-items: center; gap: 8px;">
-							<span style="font-size: 1.05rem; display: inline-flex; align-items: center; justify-content: center;">{themes.find(th => th.id === currentTheme)?.icon || '­şîÖ'}</span>
+							<span style="font-size: 1.05rem; display: inline-flex; align-items: center; justify-content: center;">{themes.find(th => th.id === currentTheme)?.icon || '⚙️'}</span>
 							<span>{themeNames[currentLanguage.value]?.[currentTheme] || currentTheme}</span>
 						</div>
 						<svg class="dropdown-chevron" class:rotated={themeDropdownOpen} width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
