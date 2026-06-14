@@ -24,6 +24,23 @@ if hasattr(sys.stdout, "reconfigure"):
 if hasattr(sys.stderr, "reconfigure"):
     sys.stderr.reconfigure(encoding="utf-8")
 
+def load_env_file():
+    for p in [".env", "frontend/.env"]:
+        if os.path.exists(p):
+            with open(p, "r", encoding="utf-8") as f:
+                for line in f:
+                    line = line.strip()
+                    if line and not line.startswith("#"):
+                        parts = line.split("=", 1)
+                        if len(parts) == 2:
+                            key, val = parts[0].strip(), parts[1].strip()
+                            if (val.startswith('"') and val.endswith('"')) or (val.startswith("'") and val.endswith("'")):
+                                val = val[1:-1]
+                            if key not in os.environ:
+                                os.environ[key] = val
+
+load_env_file()
+
 GROQ_API_KEY       = os.environ.get("GROQ_API_KEY", "")
 API_URL            = os.environ.get("NEWS_API_URL", "https://turkoyunseferiweb.vercel.app/api/news")
 API_TOKEN          = os.environ.get("NEWS_API_TOKEN", "")
