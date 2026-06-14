@@ -12,7 +12,7 @@
     --font-family: 'Outfit', sans-serif;
     
     /* Theme specific backgrounds and shadows */
-    --header-bg: rgba(7, 7, 8, 0.8);
+    --header-bg: rgba(7, 7, 8, 0.88);
     --radial-1: rgba(223, 177, 91, 0.05);
     --radial-2: rgba(255, 255, 255, 0.02);
     --card-bg: linear-gradient(135deg, rgba(20, 20, 22, 0.7) 0%, rgba(10, 10, 12, 0.85) 100%);
@@ -34,7 +34,7 @@ html[data-theme="light"] {
     --accent-glow: rgba(184, 134, 11, 0.08);
     --border-color: rgba(0, 0, 0, 0.08);
     
-    --header-bg: rgba(245, 245, 247, 0.85);
+    --header-bg: rgba(245, 245, 247, 0.92);
     --radial-1: rgba(184, 134, 11, 0.03);
     --radial-2: rgba(0, 0, 0, 0.01);
     --card-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(245, 245, 247, 0.9) 100%);
@@ -57,7 +57,7 @@ html[data-theme="forest"] {
     --accent-glow: rgba(80, 200, 120, 0.12);
     --border-color: rgba(80, 200, 120, 0.08);
     
-    --header-bg: rgba(12, 20, 15, 0.85);
+    --header-bg: rgba(12, 20, 15, 0.92);
     --radial-1: rgba(80, 200, 120, 0.06);
     --radial-2: rgba(255, 255, 255, 0.01);
     --card-bg: linear-gradient(135deg, rgba(20, 34, 26, 0.7) 0%, rgba(12, 20, 15, 0.85) 100%);
@@ -79,7 +79,7 @@ html[data-theme="ocean"] {
     --accent-glow: rgba(0, 168, 255, 0.15);
     --border-color: rgba(0, 168, 255, 0.1);
     
-    --header-bg: rgba(3, 11, 21, 0.85);
+    --header-bg: rgba(3, 11, 21, 0.92);
     --radial-1: rgba(0, 168, 255, 0.08);
     --radial-2: rgba(255, 255, 255, 0.01);
     --card-bg: linear-gradient(135deg, rgba(8, 20, 38, 0.7) 0%, rgba(3, 11, 21, 0.85) 100%);
