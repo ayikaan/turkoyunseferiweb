@@ -341,8 +341,8 @@
     <!-- 3. Authenticated Dashboard Screen -->
     {:else}
         <!-- Top welcome message centered -->
-        <div style="display: flex; justify-content: center; margin-bottom: 24px;">
-            <div class="welcome-banner" style="background: rgba(223, 177, 91, 0.08); border: 1px solid rgba(223, 177, 91, 0.2); padding: 10px 24px; border-radius: 20px; font-weight: 600; color: var(--accent-color); font-size: 1.1rem; text-shadow: 0 0 10px rgba(223, 177, 91, 0.3);">
+        <div style="display: flex; justify-content: center; margin-bottom: 28px; width: 100%;">
+            <div class="welcome-banner" style="font-family: 'Caveat', cursive; font-size: 2.6rem; font-weight: 700; color: var(--accent-color); text-align: center; text-shadow: 0 0 12px rgba(223, 177, 91, 0.3); letter-spacing: 0.5px; border: none; background: none; padding: 0;">
                 👋 Hoş geldin, {data.currentUser?.username}
             </div>
         </div>
@@ -505,77 +505,121 @@
                             Sitedeki sosyal medya linklerini ve istatistik panosundaki rakamları buradan güncelleyebilirsiniz. İstatistik alanlarını boş bırakırsanız sistem arka planda otomatik taramaya devam eder; veri girerseniz girdiğiniz değerler sabit olarak gösterilir.
                         </p>
 
-                        <form method="POST" action="?/saveSettings" use:enhance={handleSettingsSubmit} class="settings-form">
                             <div class="settings-grid">
                                 <!-- Social Media Links -->
                                 <div class="settings-col">
                                     <h4 class="col-title">Sosyal Medya Linkleri</h4>
                                     
-                                    <div class="input-group">
-                                        <label for="s-youtube">YouTube Kanalı</label>
-                                        <input type="url" id="s-youtube" name="social_youtube" value={settings.social_youtube || ''} />
-                                    </div>
-                                    <div class="input-group">
-                                        <label for="s-youtube-join">YouTube Katıl</label>
-                                        <input type="url" id="s-youtube-join" name="social_youtube_join" value={settings.social_youtube_join || ''} />
-                                    </div>
-                                    <div class="input-group">
-                                        <label for="s-instagram">Instagram</label>
-                                        <input type="url" id="s-instagram" name="social_instagram" value={settings.social_instagram || ''} />
-                                    </div>
-                                    <div class="input-group">
-                                        <label for="s-discord">Discord Sunucusu</label>
-                                        <input type="url" id="s-discord" name="social_discord" value={settings.social_discord || ''} />
-                                    </div>
-                                    <div class="input-group">
-                                        <label for="s-discord-play">Discord Play Çeviri</label>
-                                        <input type="url" id="s-discord-play" name="social_discord_play" value={settings.social_discord_play || ''} />
-                                    </div>
-                                    <div class="input-group">
-                                        <label for="s-steam">Steam Grubu</label>
-                                        <input type="url" id="s-steam" name="social_steam" value={settings.social_steam || ''} />
-                                    </div>
+                                    <form method="POST" action="?/saveSettings" use:enhance={handleSettingsSubmit} class="setting-row-form">
+                                        <div class="input-group">
+                                            <label for="s-youtube">YouTube Kanalı</label>
+                                            <input type="url" id="s-youtube" name="social_youtube" value={settings.social_youtube || ''} />
+                                        </div>
+                                        <button type="submit" class="btn-primary-compact" disabled={isSavingSettings}>Kaydet</button>
+                                    </form>
+
+                                    <form method="POST" action="?/saveSettings" use:enhance={handleSettingsSubmit} class="setting-row-form">
+                                        <div class="input-group">
+                                            <label for="s-youtube-join">YouTube Katıl</label>
+                                            <input type="url" id="s-youtube-join" name="social_youtube_join" value={settings.social_youtube_join || ''} />
+                                        </div>
+                                        <button type="submit" class="btn-primary-compact" disabled={isSavingSettings}>Kaydet</button>
+                                    </form>
+
+                                    <form method="POST" action="?/saveSettings" use:enhance={handleSettingsSubmit} class="setting-row-form">
+                                        <div class="input-group">
+                                            <label for="s-instagram">Instagram</label>
+                                            <input type="url" id="s-instagram" name="social_instagram" value={settings.social_instagram || ''} />
+                                        </div>
+                                        <button type="submit" class="btn-primary-compact" disabled={isSavingSettings}>Kaydet</button>
+                                    </form>
+
+                                    <form method="POST" action="?/saveSettings" use:enhance={handleSettingsSubmit} class="setting-row-form">
+                                        <div class="input-group">
+                                            <label for="s-discord">Discord Sunucusu</label>
+                                            <input type="url" id="s-discord" name="social_discord" value={settings.social_discord || ''} />
+                                        </div>
+                                        <button type="submit" class="btn-primary-compact" disabled={isSavingSettings}>Kaydet</button>
+                                    </form>
+
+                                    <form method="POST" action="?/saveSettings" use:enhance={handleSettingsSubmit} class="setting-row-form">
+                                        <div class="input-group">
+                                            <label for="s-discord-play">Discord Play Çeviri</label>
+                                            <input type="url" id="s-discord-play" name="social_discord_play" value={settings.social_discord_play || ''} />
+                                        </div>
+                                        <button type="submit" class="btn-primary-compact" disabled={isSavingSettings}>Kaydet</button>
+                                    </form>
+
+                                    <form method="POST" action="?/saveSettings" use:enhance={handleSettingsSubmit} class="setting-row-form">
+                                        <div class="input-group">
+                                            <label for="s-steam">Steam Grubu</label>
+                                            <input type="url" id="s-steam" name="social_steam" value={settings.social_steam || ''} />
+                                        </div>
+                                        <button type="submit" class="btn-primary-compact" disabled={isSavingSettings}>Kaydet</button>
+                                    </form>
                                 </div>
 
                                 <!-- Statistics Overrides -->
                                 <div class="settings-col">
                                     <h4 class="col-title">İstatistik Manuel Ayarları (Opsiyonel)</h4>
                                     
-                                    <div class="input-group">
-                                        <label for="stat-yt-subs">YouTube Abone Sayısı (Örn: 57,4 B)</label>
-                                        <input type="text" id="stat-yt-subs" name="stat_youtube_subscribers" value={settings.stat_youtube_subscribers || ''} placeholder={scraped.youtubeSubscribers ? `Otomatik taranıyor... (Mevcut: ${scraped.youtubeSubscribers})` : 'Otomatik taranıyor...'} />
-                                    </div>
-                                    <div class="input-group">
-                                        <label for="stat-yt-vids">YouTube Video Sayısı (Örn: 776)</label>
-                                        <input type="text" id="stat-yt-vids" name="stat_youtube_videos" value={settings.stat_youtube_videos || ''} placeholder={scraped.youtubeVideos ? `Otomatik taranıyor... (Mevcut: ${scraped.youtubeVideos})` : 'Otomatik taranıyor...'} />
-                                    </div>
-                                    <div class="input-group">
-                                        <label for="stat-steam-mem">Steam Grup Üye Sayısı (Örn: 1.101)</label>
-                                        <input type="text" id="stat-steam-mem" name="stat_steam_members" value={settings.stat_steam_members || ''} placeholder={scraped.steamGroupMembers ? `Otomatik taranıyor... (Mevcut: ${scraped.steamGroupMembers})` : 'Otomatik taranıyor...'} />
-                                    </div>
-                                    <div class="input-group">
-                                        <label for="stat-steam-online">Steam Çevrimiçi Üye (Örn: 380)</label>
-                                        <input type="text" id="stat-steam-online" name="stat_steam_online" value={settings.stat_steam_online || ''} placeholder={scraped.steamGroupOnline ? `Otomatik taranıyor... (Mevcut: ${scraped.steamGroupOnline})` : 'Otomatik taranıyor...'} />
-                                    </div>
-                                    <div class="input-group">
-                                        <label for="stat-steam-lvl">Mustafa Kadir Steam Seviyesi (Örn: 45)</label>
-                                        <input type="text" id="stat-steam-lvl" name="stat_steam_level" value={settings.stat_steam_level || ''} placeholder={scraped.steamLevel ? `Otomatik taranıyor... (Mevcut: ${scraped.steamLevel})` : 'Otomatik taranıyor...'} />
-                                    </div>
-                                    <div class="input-group">
-                                        <label for="stat-steam-fr">Mustafa Kadir Arkadaş Sayısı (Örn: 294)</label>
-                                        <input type="text" id="stat-steam-fr" name="stat_steam_friends" value={settings.stat_steam_friends || ''} placeholder={scraped.steamFriends ? `Otomatik taranıyor... (Mevcut: ${scraped.steamFriends})` : 'Otomatik taranıyor...'} />
-                                    </div>
-                                    <div class="input-group">
-                                        <label for="stat-x-mem">X Topluluk Üye Sayısı (Örn: 4,7 B)</label>
-                                        <input type="text" id="stat-x-mem" name="stat_x_members" value={settings.stat_x_members || ''} placeholder={scraped.xCommunityMembers ? `Otomatik taranıyor... (Mevcut: ${scraped.xCommunityMembers})` : 'Otomatik taranıyor...'} />
-                                    </div>
+                                    <form method="POST" action="?/saveSettings" use:enhance={handleSettingsSubmit} class="setting-row-form">
+                                        <div class="input-group">
+                                            <label for="stat-yt-subs">YouTube Abone Sayısı</label>
+                                            <input type="text" id="stat-yt-subs" name="stat_youtube_subscribers" value={settings.stat_youtube_subscribers || ''} placeholder={scraped.youtubeSubscribers ? `Otomatik taranıyor... (Mevcut: ${scraped.youtubeSubscribers})` : 'Otomatik taranıyor...'} />
+                                        </div>
+                                        <button type="submit" class="btn-primary-compact" disabled={isSavingSettings}>Kaydet</button>
+                                    </form>
+
+                                    <form method="POST" action="?/saveSettings" use:enhance={handleSettingsSubmit} class="setting-row-form">
+                                        <div class="input-group">
+                                            <label for="stat-yt-vids">YouTube Video Sayısı</label>
+                                            <input type="text" id="stat-yt-vids" name="stat_youtube_videos" value={settings.stat_youtube_videos || ''} placeholder={scraped.youtubeVideos ? `Otomatik taranıyor... (Mevcut: ${scraped.youtubeVideos})` : 'Otomatik taranıyor...'} />
+                                        </div>
+                                        <button type="submit" class="btn-primary-compact" disabled={isSavingSettings}>Kaydet</button>
+                                    </form>
+
+                                    <form method="POST" action="?/saveSettings" use:enhance={handleSettingsSubmit} class="setting-row-form">
+                                        <div class="input-group">
+                                            <label for="stat-steam-mem">Steam Grup Üye Sayısı</label>
+                                            <input type="text" id="stat-steam-mem" name="stat_steam_members" value={settings.stat_steam_members || ''} placeholder={scraped.steamGroupMembers ? `Otomatik taranıyor... (Mevcut: ${scraped.steamGroupMembers})` : 'Otomatik taranıyor...'} />
+                                        </div>
+                                        <button type="submit" class="btn-primary-compact" disabled={isSavingSettings}>Kaydet</button>
+                                    </form>
+
+                                    <form method="POST" action="?/saveSettings" use:enhance={handleSettingsSubmit} class="setting-row-form">
+                                        <div class="input-group">
+                                            <label for="stat-steam-online">Steam Çevrimiçi Üye</label>
+                                            <input type="text" id="stat-steam-online" name="stat_steam_online" value={settings.stat_steam_online || ''} placeholder={scraped.steamGroupOnline ? `Otomatik taranıyor... (Mevcut: ${scraped.steamGroupOnline})` : 'Otomatik taranıyor...'} />
+                                        </div>
+                                        <button type="submit" class="btn-primary-compact" disabled={isSavingSettings}>Kaydet</button>
+                                    </form>
+
+                                    <form method="POST" action="?/saveSettings" use:enhance={handleSettingsSubmit} class="setting-row-form">
+                                        <div class="input-group">
+                                            <label for="stat-steam-lvl">Mustafa Kadir Steam Seviyesi</label>
+                                            <input type="text" id="stat-steam-lvl" name="stat_steam_level" value={settings.stat_steam_level || ''} placeholder={scraped.steamLevel ? `Otomatik taranıyor... (Mevcut: ${scraped.steamLevel})` : 'Otomatik taranıyor...'} />
+                                        </div>
+                                        <button type="submit" class="btn-primary-compact" disabled={isSavingSettings}>Kaydet</button>
+                                    </form>
+
+                                    <form method="POST" action="?/saveSettings" use:enhance={handleSettingsSubmit} class="setting-row-form">
+                                        <div class="input-group">
+                                            <label for="stat-steam-fr">Mustafa Kadir Arkadaş Sayısı</label>
+                                            <input type="text" id="stat-steam-fr" name="stat_steam_friends" value={settings.stat_steam_friends || ''} placeholder={scraped.steamFriends ? `Otomatik taranıyor... (Mevcut: ${scraped.steamFriends})` : 'Otomatik taranıyor...'} />
+                                        </div>
+                                        <button type="submit" class="btn-primary-compact" disabled={isSavingSettings}>Kaydet</button>
+                                    </form>
+
+                                    <form method="POST" action="?/saveSettings" use:enhance={handleSettingsSubmit} class="setting-row-form">
+                                        <div class="input-group">
+                                            <label for="stat-x-mem">X Topluluk Üye Sayısı</label>
+                                            <input type="text" id="stat-x-mem" name="stat_x_members" value={settings.stat_x_members || ''} placeholder={scraped.xCommunityMembers ? `Otomatik taranıyor... (Mevcut: ${scraped.xCommunityMembers})` : 'Otomatik taranıyor...'} />
+                                        </div>
+                                        <button type="submit" class="btn-primary-compact" disabled={isSavingSettings}>Kaydet</button>
+                                    </form>
                                 </div>
                             </div>
-
-                            <button type="submit" class="btn-primary" style="margin-top: 32px;" disabled={isSavingSettings}>
-                                {isSavingSettings ? 'Kaydediliyor...' : 'Tüm Ayarları Kaydet'}
-                            </button>
-                        </form>
                     </div>
                 </div>
             </div>
@@ -1201,5 +1245,42 @@
         .admin-select {
             width: 100%;
         }
+    }
+
+    .setting-row-form {
+        display: flex;
+        align-items: flex-end;
+        gap: 12px;
+        width: 100%;
+    }
+
+    .btn-primary-compact {
+        background: linear-gradient(135deg, var(--accent-color), #cbb26a);
+        color: #000000;
+        border: none;
+        padding: 12px 18px;
+        border-radius: 6px;
+        font-weight: 700;
+        font-size: 0.85rem;
+        font-family: var(--font-family);
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        box-shadow: 0 4px 15px rgba(223, 177, 91, 0.15);
+        height: 46px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        margin: 0;
+    }
+
+    .btn-primary-compact:hover {
+        transform: translateY(-1px);
+        background: linear-gradient(135deg, var(--accent-hover), var(--accent-color));
+        box-shadow: 0 6px 18px rgba(223, 177, 91, 0.3);
+    }
+
+    .btn-primary-compact:active {
+        transform: translateY(0) scale(0.98);
     }
 </style>
