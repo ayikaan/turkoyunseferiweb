@@ -1,6 +1,6 @@
 import { fail, redirect } from '@sveltejs/kit';
 import type { PageServerLoad, Actions } from './$types';
-import { db } from '$lib/server/db';
+import { db, parseTurkishDate } from '$lib/server/db';
 import { env } from '$env/dynamic/private';
 import fs from 'fs';
 import path from 'path';
@@ -182,6 +182,7 @@ export const load: PageServerLoad = async ({ cookies, getClientAddress }) => {
             content: JSON.parse(row.content),
             cta: JSON.parse(row.cta)
         }));
+        newsItems.sort((a, b) => parseTurkishDate(b.date).getTime() - parseTurkishDate(a.date).getTime());
 
         const settingsResult = await db.execute("SELECT key, value FROM settings");
         const settings: Record<string, string> = {};

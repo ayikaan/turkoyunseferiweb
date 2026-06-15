@@ -146,3 +146,28 @@ async function initDb() {
 
 // Trigger initialization
 initDb();
+
+export function parseTurkishDate(dateStr: string): Date {
+    const months: Record<string, number> = {
+        ocak: 0, subat: 1, mart: 2, nisan: 3, mayis: 4, haziran: 5,
+        temmuz: 6, agustos: 7, eylul: 8, ekim: 9, kasim: 10, aralik: 11
+    };
+    const normalized = dateStr.toLowerCase()
+        .replace(/ı/g, 'i')
+        .replace(/ö/g, 'o')
+        .replace(/ü/g, 'u')
+        .replace(/ş/g, 's')
+        .replace(/ç/g, 'c')
+        .replace(/ğ/g, 'g');
+    const parts = normalized.split(/\s+/);
+    if (parts.length === 3) {
+        const day = parseInt(parts[0], 10);
+        const monthName = parts[1];
+        const year = parseInt(parts[2], 10);
+        const monthIndex = months[monthName];
+        if (monthIndex !== undefined && !isNaN(day) && !isNaN(year)) {
+            return new Date(year, monthIndex, day);
+        }
+    }
+    return new Date(0);
+}

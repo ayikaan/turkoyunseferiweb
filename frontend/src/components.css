@@ -27,6 +27,13 @@ nav {
     gap: 40px;
 }
 
+@media (min-width: 1201px) {
+    header nav.container {
+        justify-content: center;
+        gap: 50px;
+    }
+}
+
 .logo {
     font-size: 1.35rem;
     font-weight: 700;

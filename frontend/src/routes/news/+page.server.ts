@@ -1,5 +1,5 @@
 import type { PageServerLoad } from './$types';
-import { db } from '$lib/server/db';
+import { db, parseTurkishDate } from '$lib/server/db';
 
 export const load: PageServerLoad = async () => {
     try {
@@ -15,6 +15,7 @@ export const load: PageServerLoad = async () => {
             content: JSON.parse(row.content),
             cta: JSON.parse(row.cta)
         }));
+        newsItems.sort((a, b) => parseTurkishDate(b.date).getTime() - parseTurkishDate(a.date).getTime());
         return {
             initialNews: newsItems
         };

@@ -1,6 +1,6 @@
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { db } from '$lib/server/db';
+import { db, parseTurkishDate } from '$lib/server/db';
 import { env } from '$env/dynamic/private';
 
 // Get client IP helper
@@ -26,6 +26,8 @@ export const GET: RequestHandler = async () => {
             content: JSON.parse(row.content),
             cta: JSON.parse(row.cta)
         }));
+        
+        newsItems.sort((a, b) => parseTurkishDate(b.date).getTime() - parseTurkishDate(a.date).getTime());
         
         return json(newsItems);
     } catch (e) {
