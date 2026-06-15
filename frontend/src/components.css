@@ -21,6 +21,12 @@ nav {
     height: 90px;
 }
 
+.nav-left-group {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
 .logo {
     font-size: 1.35rem;
     font-weight: 700;

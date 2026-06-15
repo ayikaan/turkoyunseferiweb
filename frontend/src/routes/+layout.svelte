@@ -248,11 +248,11 @@
 	{:else}
 		<header id="main-header">
 			<nav class="container">
-				<a href="/" class="brand-logo-link" style="text-decoration: none; color: inherit; display: flex; align-items: center;">
-					<TurkishFlag />
-					{@render brandName()}
-				</a>
-				<div class="nav-right-container" style="display: flex; align-items: center;">
+				<div class="nav-left-group">
+					<a href="/" class="brand-logo-link" style="text-decoration: none; color: inherit; display: flex; align-items: center;">
+						<TurkishFlag />
+						{@render brandName()}
+					</a>
 					<ul class="nav-links">
 						<li><a href="/" class:active={$page.url.pathname === '/'}>{t.nav.home}</a></li>
 						<li><a href="/about" class:active={$page.url.pathname === '/about'}>{t.nav.about}</a></li>
@@ -260,6 +260,8 @@
 						<li><a href="/community" class:active={$page.url.pathname === '/community'}>{t.nav.community}</a></li>
 						<li><a href="/news" class:active={$page.url.pathname === '/news'}>{t.nav.news}</a></li>
 					</ul>
+				</div>
+				<div class="nav-right-container" style="display: flex; align-items: center;">
 
 					<!-- Language Selector Dropdown -->
 					<div class="lang-selector-container">
