@@ -152,7 +152,13 @@
     function handleDeviceAction(actionName: string) {
         return async ({ result }: any) => {
             if (result.type === 'success') {
-                showNotification('success', actionName === 'approve' ? 'Cihaz başarıyla onaylandı!' : 'Cihazın yetkisi başarıyla kaldırıldı.');
+                let msg = 'Cihazın yetkisi başarıyla kaldırıldı.';
+                if (actionName === 'approve') {
+                    msg = 'Cihaz başarıyla onaylandı!';
+                } else if (actionName === 'logout') {
+                    msg = 'Cihaz oturumu başarıyla kapatıldı.';
+                }
+                showNotification('success', msg);
                 location.reload();
             } else if (result.type === 'failure') {
                 showNotification('error', result.data?.error || 'İşlem gerçekleştirilemedi.');
@@ -823,16 +829,35 @@
                                                     {#if device.device_id === data.deviceId}
                                                         <span style="color: var(--accent-color); font-size: 0.85rem; font-weight: 600;">Şu anki Cihaz</span>
                                                     {:else}
-                                                        {#if device.is_approved}
-                                                            <form method="POST" action="?/revokeDevice" use:enhance={() => handleDeviceAction('revoke')}>
-                                                                <input type="hidden" name="device_id" value={device.device_id} />
-                                                                <button type="submit" class="action-btn delete">Yetkiyi Kaldır</button>
-                                                            </form>
+                                                        {#if device.name === 'Kurucu Cihaz'}
+                                                            {#if device.session_active}
+                                                                <form method="POST" action="?/logoutDevice" use:enhance={() => handleDeviceAction('logout')}>
+                                                                    <input type="hidden" name="device_id" value={device.device_id} />
+                                                                    <button type="submit" class="action-btn edit" style="border-color: rgba(223, 177, 91, 0.2); color: var(--accent-color); background: rgba(223, 177, 91, 0.03);">Oturumu Kapat</button>
+                                                                </form>
+                                                            {:else}
+                                                                <span style="color: var(--text-secondary); font-size: 0.85rem; font-style: italic;">Oturum Kapalı</span>
+                                                            {/if}
                                                         {:else}
-                                                            <form method="POST" action="?/approveDevice" use:enhance={() => handleDeviceAction('approve')}>
-                                                                <input type="hidden" name="device_id" value={device.device_id} />
-                                                                <button type="submit" class="action-btn edit" style="border-color: rgba(16, 185, 129, 0.2); color: #34d399; background: rgba(16, 185, 129, 0.03);">Onayla</button>
-                                                            </form>
+                                                            {#if device.is_approved}
+                                                                <div style="display: flex; gap: 8px;">
+                                                                    {#if device.session_active}
+                                                                        <form method="POST" action="?/logoutDevice" use:enhance={() => handleDeviceAction('logout')}>
+                                                                            <input type="hidden" name="device_id" value={device.device_id} />
+                                                                            <button type="submit" class="action-btn edit" style="border-color: rgba(223, 177, 91, 0.2); color: var(--accent-color); background: rgba(223, 177, 91, 0.03);">Oturumu Kapat</button>
+                                                                        </form>
+                                                                    {/if}
+                                                                    <form method="POST" action="?/revokeDevice" use:enhance={() => handleDeviceAction('revoke')}>
+                                                                        <input type="hidden" name="device_id" value={device.device_id} />
+                                                                        <button type="submit" class="action-btn delete">Yetkiyi Kaldır</button>
+                                                                    </form>
+                                                                </div>
+                                                            {:else}
+                                                                <form method="POST" action="?/approveDevice" use:enhance={() => handleDeviceAction('approve')}>
+                                                                    <input type="hidden" name="device_id" value={device.device_id} />
+                                                                    <button type="submit" class="action-btn edit" style="border-color: rgba(16, 185, 129, 0.2); color: #34d399; background: rgba(16, 185, 129, 0.03);">Onayla</button>
+                                                                </form>
+                                                            {/if}
                                                         {/if}
                                                     {/if}
                                                 </td>

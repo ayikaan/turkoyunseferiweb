@@ -68,9 +68,11 @@ async function initDb() {
                 is_approved INTEGER DEFAULT 0,
                 created_at TEXT NOT NULL,
                 approved_at TEXT,
-                name TEXT
+                name TEXT,
+                session_active INTEGER DEFAULT 1
             )
         `);
+        await db.execute("ALTER TABLE approved_devices ADD COLUMN session_active INTEGER DEFAULT 1").catch(() => {});
 
         await db.execute(`
             CREATE TABLE IF NOT EXISTS login_attempts (

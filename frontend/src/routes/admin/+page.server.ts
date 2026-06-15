@@ -102,10 +102,10 @@ async function checkAuth(cookies: any) {
         if (userResult.rows.length === 0) return { authenticated: false };
 
         const deviceResult = await db.execute({
-            sql: "SELECT is_approved FROM approved_devices WHERE device_id = ?",
+            sql: "SELECT is_approved, session_active FROM approved_devices WHERE device_id = ?",
             args: [deviceId]
         });
-        if (deviceResult.rows.length === 0 || deviceResult.rows[0].is_approved !== 1) {
+        if (deviceResult.rows.length === 0 || deviceResult.rows[0].is_approved !== 1 || deviceResult.rows[0].session_active === 0) {
             return { authenticated: false };
         }
 
@@ -215,6 +215,7 @@ export const load: PageServerLoad = async ({ cookies, getClientAddress }) => {
                 user_agent: row.user_agent,
                 ip_address: row.ip_address,
                 is_approved: row.is_approved === 1,
+                session_active: row.session_active !== 0,
                 created_at: row.created_at,
                 approved_at: row.approved_at,
                 name: row.name
@@ -406,10 +407,30 @@ export const actions: Actions = {
             maxAge: 60 * 60 * 24 * 7 // 1 week
         });
 
+        await db.execute({
+            sql: "UPDATE approved_devices SET session_active = 1 WHERE device_id = ?",
+            args: [deviceId]
+        });
+
         return { success: true };
     },
 
     logout: async ({ cookies }) => {
+        const sessionCookie = cookies.get('admin_session');
+        if (sessionCookie) {
+            try {
+                const decrypted = await decryptText(sessionCookie);
+                const [_, deviceId] = decrypted.split(':');
+                if (deviceId) {
+                    await db.execute({
+                        sql: "UPDATE approved_devices SET session_active = 0 WHERE device_id = ?",
+                        args: [deviceId]
+                    });
+                }
+            } catch (e) {
+                console.error('Logout device update error:', e);
+            }
+        }
         cookies.delete('admin_session', { path: '/' });
         throw redirect(303, '/admin');
     },
@@ -538,6 +559,29 @@ export const actions: Actions = {
             return { success: true };
         } catch (e: any) {
             return fail(500, { error: e.message || 'Cihaz yetkisi kaldırılamadı.' });
+        }
+    },
+
+    logoutDevice: async ({ request, cookies }) => {
+        const auth = await checkAuth(cookies);
+        if (!auth.authenticated || !auth.user?.isOwner) {
+            return fail(403, { error: 'Bu işlem için yetkiniz yok.' });
+        }
+
+        const data = await request.formData();
+        const deviceId = data.get('device_id')?.toString();
+        if (!deviceId) {
+            return fail(400, { error: 'Cihaz ID gereklidir.' });
+        }
+
+        try {
+            await db.execute({
+                sql: "UPDATE approved_devices SET session_active = 0 WHERE device_id = ?",
+                args: [deviceId]
+            });
+            return { success: true };
+        } catch (e: any) {
+            return fail(500, { error: e.message || 'Cihaz oturumu kapatılamadı.' });
         }
     },
 
